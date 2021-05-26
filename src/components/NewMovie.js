@@ -7,6 +7,7 @@ const format = (string) => string.split(',').map((s) => s.trim())
 
 function NewMovie() {
   const history = useHistory()
+  console.log(history)
   const [formData, setFormData] = React.useState({
     imdb: '',
     title: '',
@@ -25,14 +26,14 @@ function NewMovie() {
 
   const [moviePoster, setMoviePoster] = React.useState('')
   const [moods, setMoods] = React.useState([])
-  
-  // React.useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get('ENDPOINT FOR ALL MOODS')
-  //     setMoods(data)
-  //   }
-  //   getData()
-  // }, [])
+  console.log(setMoods)
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get('ENDPOINT FOR ALL MOODS')
+      setMoods(data)
+    }
+    getData()
+  }, [])
 
   const handleLoadOptions = async (inputValue) => {
     const { data } = await axios.get(
@@ -82,8 +83,9 @@ function NewMovie() {
       actors: format(formData.actors),
       language: format(formData.language),
     }
-    //   const response = await axios.post('POST A NEW FILM', newMovieData)
-    //   history.push('SOME OTHER PAGE')
+    const response = await axios.post('POST A NEW FILM', newMovieData)
+    history.push('SOME OTHER PAGE')
+    console.log(response)
   }
 
   const handleToggleMood = ({ target: { value: mood } }) => {
