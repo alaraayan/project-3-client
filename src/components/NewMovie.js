@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 const format = (string) => string.split(',').map((s) => s.trim())
 
 function NewMovie() {
+  // eslint-disable-next-line no-unused-vars
   const history = useHistory()
   const [formData, setFormData] = React.useState({
     imdb: '',
@@ -26,13 +27,13 @@ function NewMovie() {
   const [moviePoster, setMoviePoster] = React.useState('')
   const [moods, setMoods] = React.useState([])
   
-  // React.useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get('ENDPOINT FOR ALL MOODS')
-  //     setMoods(data)
-  //   }
-  //   getData()
-  // }, [])
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get('ENDPOINT FOR ALL MOODS')
+      setMoods(data)
+    }
+    getData()
+  }, [])
 
   const handleLoadOptions = async (inputValue) => {
     const { data } = await axios.get(
@@ -75,6 +76,7 @@ function NewMovie() {
   }
 
   const handleSubmit = async () => {
+    // eslint-disable-next-line no-unused-vars
     const newMovieData = {
       ...formData,
       genres: format(formData.genres),
@@ -85,6 +87,7 @@ function NewMovie() {
     //   const response = await axios.post('POST A NEW FILM', newMovieData)
     //   history.push('SOME OTHER PAGE')
   }
+  
 
   const handleToggleMood = ({ target: { value: mood } }) => {
     setFormData({

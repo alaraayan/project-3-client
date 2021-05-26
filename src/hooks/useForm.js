@@ -1,12 +1,12 @@
 import React from 'react'
 
-export function useForm(initialValue) {
+export default function useForm(initialValue) {
   // below the variables are destructered from the array
   const [formData, setFormData] = React.useState(initialValue)
   const [formErrors, setFormErrors] = React.useState(initialValue)
 
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setFormErrors({ ...formErrors, [e.target.name]: '' })
   }
@@ -18,3 +18,4 @@ export function useForm(initialValue) {
     formErrors,
   } 
 }
+
