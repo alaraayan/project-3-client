@@ -1,4 +1,4 @@
-import NewMovie from './components/NewMovie'
+import NewMovie from './components/common/Movie/NewMovie'
 
 function App() {
   return (
