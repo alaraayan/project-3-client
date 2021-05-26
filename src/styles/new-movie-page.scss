@@ -1,0 +1,28 @@
+section#new-movie {
+  font-size: 80%;
+  margin: 30px;
+
+  img.poster {
+    margin: 20px;
+  }
+  
+  .ratings-card {
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 7px;
+    margin: 5px;
+    display: inline-flex;
+    width: min-content;
+    // height: 100px;
+    // width: 100px;
+    img {
+      height: 50px;
+      max-height: 100%;
+      display: inline-block;
+    }
+  }
+
+  .buttons-container {
+  margin-top: 20px;
+  }
+}

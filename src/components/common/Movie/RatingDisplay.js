@@ -10,8 +10,8 @@ const logoReferences = {
 
 function RatingDisplay({ rating }) {
   return (
-    <div>
-      <img src={logoReferences[rating.Source]} height='50px' />
+    <div className='ratings-card'>
+      <img src={logoReferences[rating.Source]} />
       <p>{rating.Value}</p>
     </div>
   )

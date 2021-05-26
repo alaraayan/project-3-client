@@ -1,8 +1,20 @@
 import axios from 'axios'
-// import { getToken } from './auth'
+import { getToken } from './auth'
 
 
 const baseUrl = '/api'
+
+function headers() {
+  return {
+    headers: { Authorization: `Bearer ${getToken()}` }, 
+  }
+}
+
+//* Movie requests
+
+export function addNewMovie(newMovieData) {
+  return axios.post(`${baseUrl}/movies`, newMovieData, headers())
+}
 
 // * Auth Requests
 

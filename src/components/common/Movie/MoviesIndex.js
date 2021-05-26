@@ -27,7 +27,7 @@ function MoviesIndex() {
             {/* display each movie */}
 
             <figure >
-              <img src={movie.poster} alt={movie.name} width="240" height="125" />
+              <img src={movie.poster} alt={movie.name} />
             </figure>
             
             <h2>{movie.title}, {movie.year}</h2>

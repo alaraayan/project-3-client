@@ -1,0 +1,55 @@
+$button-color: rgb(248, 68, 68);
+$button-hover-color: rgb(202, 52, 52);
+$button-selected-color: rgb(121, 25, 25);
+
+
+.mood-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin: 3px;
+  height: 1.5rem;
+  outline: none;
+  color: white;
+  background-color: $button-color;
+  border-radius: 0.5rem;
+  border: solid 1px transparent;
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: 0.35s
+}
+
+.mood-button:hover {
+  background: $button-hover-color;
+  box-shadow: 0 45px 60px rgba(#000000, 0.16)
+}
+
+.mood-button:focus {
+  border: solid 1px rgb(245, 146, 146);
+}
+
+.mood-button-selected {
+  background-color: $button-selected-color;
+}
+
+.submit-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin: 3px auto;
+  height: 3rem;
+  outline: none;
+  color: white;
+  background-color: red;
+  border-radius: 0.5rem;
+  border: solid 1px transparent;
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: 0.35s
+}

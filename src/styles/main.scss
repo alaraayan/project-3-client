@@ -1,3 +1,6 @@
+@use './buttons.scss';
+@use './new-movie-page.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +9,9 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  margin: 0
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
 }
 
 
@@ -24,20 +29,21 @@ body {
   border-radius: 10px;
   flex-basis: 23%;
   margin: 5px;
-  padding: 4px;
-  height: 43vh;
+  padding: 15px;
+  height: auto;
+  font-size: 12px;
 }
 
 img {
   display: block;
   margin: 0 auto;
   margin-bottom: 5px;
-  object-fit: cover;
+  // object-fit: cover;
 }
 
 .movie_image_holder {
   height: 100%;
-  position:relative;
+  position: relative;
   background-size: cover;
   background-position: center;
 }
@@ -47,3 +53,4 @@ img {
   line-height: 1.5em;
   overflow: hidden;
 }
+
