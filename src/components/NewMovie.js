@@ -8,6 +8,7 @@ const format = (string) => string.split(',').map((s) => s.trim())
 function NewMovie() {
   // eslint-disable-next-line no-unused-vars
   const history = useHistory()
+  console.log(history)
   const [formData, setFormData] = React.useState({
     imdb: '',
     title: '',
@@ -84,8 +85,9 @@ function NewMovie() {
       actors: format(formData.actors),
       language: format(formData.language),
     }
-    //   const response = await axios.post('POST A NEW FILM', newMovieData)
-    //   history.push('SOME OTHER PAGE')
+    const response = await axios.post('POST A NEW FILM', newMovieData)
+    history.push('SOME OTHER PAGE')
+    console.log(response)
   }
   
 
