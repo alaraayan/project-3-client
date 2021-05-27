@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function MoviesIndex() {
   const [movies, setMovies] = React.useState([])
@@ -23,18 +24,20 @@ function MoviesIndex() {
     <>
       <div className="movies_container">
         {movies.map(movie => (
-          <div className="individual_movies_container" key={movie._id}>
-            {/* display each movie */}
+          <Link to={`/movies/${movie._id}`} key={movie._id}>
+            <div className="individual_movies_container" >
+              {/* display each movie */}
 
-            <figure >
-              <img src={movie.poster} alt={movie.name} width="240" height="125" />
-            </figure>
-            
-            <h2>{movie.title}, {movie.year}</h2>
-            <div className="overflow-text">
-              {movie.plot}
+              <figure >
+                <img src={movie.poster} alt={movie.name} width="240" height="125" />
+              </figure>
+              
+              <h2>{movie.title}, {movie.year}</h2>
+              <div className="overflow-text">
+                {movie.plot}
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
