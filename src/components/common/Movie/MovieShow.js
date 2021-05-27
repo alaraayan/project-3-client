@@ -7,16 +7,6 @@ import Error from '../Error'
 import RatingDisplay from './RatingDisplay'
 
 
-// import imdb from '../../../assets/images/imdb-icon.png' 
-// import metacritic from '../../../assets/images/metacritic-icon.png'
-// import rottenTomatoes from '../../../assets/images/rotten-tomatoes-icon.png'
-
-// const logoReferences = {
-//   'Internet Movie Database': imdb,
-//   'Rotten Tomatoes': rottenTomatoes,
-//   'Metacritic': metacritic,
-// }
-
 function MovieShow() {
   const { movieId } = useParams()
   const [movie, setMovie] = React.useState(null)
