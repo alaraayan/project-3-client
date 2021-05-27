@@ -6,9 +6,16 @@ const baseUrl = '/api'
 
 function headers() {
   return {
-    headers: { Authorization: `Bearer ${getToken()}` },
+    headers: { Authorization: `Bearer ${getToken()}` }, 
   }
 }
+
+//* Movie requests
+
+export function addNewMovie(newMovieData) {
+  return axios.post(`${baseUrl}/movies`, newMovieData, headers())
+}
+
 
 // * Movie Requests
 
@@ -18,10 +25,6 @@ export function getAllMovies() {
 
 export function getSingleMovie(movieId) {
   return axios.get(`${baseUrl}/movies/${movieId}`)
-}
-
-export function createMovie(formdata) {
-  return axios.post(`${baseUrl}/movies`, formdata, headers())
 }
 
 export function editMovie(id, formdata) {

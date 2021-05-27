@@ -84,7 +84,11 @@ function MovieShow() {
               )}
             </div>
             {movie.moods.map(({ mood }) => (
-              <button key={mood._id} value={mood}>
+              <button 
+                key={mood._id} 
+                value={mood}
+                className="mood-button" 
+              >
                 {mood.mood}
               </button>
             ))}
