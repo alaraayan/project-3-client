@@ -16,14 +16,14 @@ function MoviesIndex() {
     getMovieData()
   }, [])
 
-  console.log(setMovies)
-  console.log(movies.data)
+  // console.log(setMovies)
+  // console.log(movies.data)
 
   return (
     <>
-      <div className="movies_container">
+      <div className="movies-container">
         {movies.map(movie => (
-          <div className="individual_movies_container" key={movie._id}>
+          <div className="individual-movies-container" key={movie._id}>
             {/* display each movie */}
 
             <figure >

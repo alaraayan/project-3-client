@@ -13,44 +13,59 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
 }
+h1, h2 {
+  text-transform: uppercase;
+}
+
+img.moodflix-logo {
+  width: 10rem;
+}
 
 
-.movies_container {
+.movies-container {
   max-width: 1055px;  
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
-  margin:0 auto;
+  margin: 1.5rem auto;
 }
 
-.individual_movies_container {
-  border: 1px solid #DCDCDC;
-  border-radius: 10px;
+.individual-movies-container {
+  // border: 1px solid #BDBDBD;
+  border-radius: 0.75rem;
   flex-basis: 23%;
-  margin: 5px;
-  padding: 15px;
+  margin: .5rem;
+  padding: 1.25rem;
   height: auto;
   font-size: 12px;
+  align-items: center;
+  background: white;
+  color: black;
+  box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+
+    
+    img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    object-fit: cover;
+    width: 10rem;
+  }
+
+  .movie-image-holder {
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .overflow-text {
+    height: 4.5em; 
+    line-height: 1.5em;
+    overflow: hidden;
+  }
 }
 
-img {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 5px;
-  // object-fit: cover;
-}
 
-.movie_image_holder {
-  height: 100%;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-}
-
-.overflow-text {
-  height: 4.5em; 
-  line-height: 1.5em;
-  overflow: hidden;
-}
 

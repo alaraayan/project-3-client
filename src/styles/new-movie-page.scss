@@ -4,6 +4,8 @@ section#new-movie {
 
   img.poster {
     margin: 20px;
+    width: 300px;
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
   }
   
   .ratings-card {
@@ -13,6 +15,7 @@ section#new-movie {
     margin: 5px;
     display: inline-flex;
     width: min-content;
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
     // height: 100px;
     // width: 100px;
     img {
@@ -21,8 +24,9 @@ section#new-movie {
       display: inline-block;
     }
   }
-
-  .buttons-container {
-  margin-top: 20px;
+  .submit-button-container{
+    align-items: right;
   }
+
+
 }

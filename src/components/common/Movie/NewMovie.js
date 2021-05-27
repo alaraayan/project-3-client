@@ -4,29 +4,53 @@ import ImdbSelect from './ImdbSelect'
 import RatingDisplay from './RatingDisplay'
 import { useHistory } from 'react-router-dom'
 import { addNewMovie } from '../../../lib/api'
+import moodflixLogo from '../../../assets/images/moodflix-logo.png'
 
 const format = (string) => string.split(',').map((s) => s.trim())
+
+const initialData = {
+  imdb: '',
+  title: '',
+  year: '',
+  rated: '',
+  released: '',
+  runtime: '',
+  genres: '',
+  director: '',
+  actors: '',
+  plot: '',
+  language: '',
+  poster: '',
+  ratings: [],
+  moods: [],
+}
+
+// const tempData =   {
+//   'title': 'Dances with Wolves',
+//   imdb: 'tt0099348',
+//   'year': '1990',
+//   'rated': 'PG-13',
+//   'released': '21 Nov 1990',
+//   'runtime': '181 min',
+//   'genres': 'Adventure, Drama, Western',
+//   'director': 'Kevin Costner',
+//   'actors': 'Kevin Costner, Mary McDonnell, Graham Greene, Rodney A. Grant',
+//   'plot': 'Lt. John Dunbar is dubbed a hero after he accidentally leads Union troops to a victory during the Civil War. He requests a position on the western frontier, but finds it deserted. He soon finds out he is not alone, but meets a wolf he dubs "Two-socks" and a curious Indian tribe. Dunbar quickly makes friends with the tribe, and discovers a white woman who was raised by the Indians. He gradually earns the respect of these native people, and sheds his white-man\'s ways.',
+//   'language': 'English, Sioux, Pawnee',
+//   'poster': 'https://m.media-amazon.com/images/M/MV5BMTY3OTI5NDczN15BMl5BanBnXkFtZTcwNDA0NDY3Mw@@._V1_SX300.jpg',
+//   'ratings': [
+//     { 'source': 'Internet Movie Database', 'value': '8.0/10' },
+//     { 'source': 'Rotten Tomatoes', 'value': '83%' },
+//     { 'source': 'Metacritic', 'value': '72/100' }
+//   ],
+//   'moods': ['uplifting', 'thought-provoking'],
+// }
 
 function NewMovie() {
   const history = useHistory()
   const [moods, setMoods] = React.useState([])
   const [error, setError] = React.useState('')
-  const [movieData, setMovieData] = React.useState({
-    imdb: '',
-    title: '',
-    year: '',
-    rated: '',
-    released: '',
-    runtime: '',
-    genres: '',
-    director: '',
-    actors: '',
-    plot: '',
-    language: '',
-    poster: '',
-    ratings: [],
-    moods: [],
-  })
+  const [movieData, setMovieData] = React.useState(initialData)
 
   React.useEffect(() => {
     const getData = async () => {
@@ -45,8 +69,8 @@ function NewMovie() {
         director: format(movieData.director),
         actors: format(movieData.actors),
         language: format(movieData.language),
-        ratings: movieData.ratings.map(rating => ({ value: rating.Value, source: rating.Source })),
       }
+      console.log('newMovieData', newMovieData)
       await addNewMovie(newMovieData)
       history.push('/movies')
     } catch (e) {
@@ -56,17 +80,22 @@ function NewMovie() {
   
 
   const handleToggleMood = ({ target: { value: mood } }) => {
+    console.log('mood', mood)
     setMovieData({
       ...movieData,
       moods: movieData.moods.includes(mood)
         ? movieData.moods.filter((m) => m !== mood)
         : [...movieData.moods, mood],
         
+        
     })
   }
+  console.log(movieData.moods)
 
   return (
     <section id="new-movie">
+      <img src={moodflixLogo} alt="moodflix logo" className="moodflix-logo"/>
+      <h1>Add a movie to Moodflix</h1>
       <ImdbSelect setError={setError} setMovieData={setMovieData} />
       {error && <p>{error}</p>}
       {movieData.imdb && (
@@ -77,7 +106,7 @@ function NewMovie() {
             </div>
             <div>
               <div>
-                <h1>{movieData.title}</h1>
+                <h2>{movieData.title}</h2>
               </div>
               <div>
                 <h3>Director</h3>
@@ -110,8 +139,9 @@ function NewMovie() {
                 )}
               </div>
               <div className='buttons-container'>
-                {moods.map(({ mood }) => (
-                  <button 
+                {moods.map(({ mood }) => {
+                  //console.log('mood in map', mood)
+                  return <button 
                     key={mood}
                     value={mood} 
                     onClick={handleToggleMood} 
@@ -119,11 +149,13 @@ function NewMovie() {
                   >
                     {mood}
                   </button>
-                ))}
+                })}
               </div>
             </div>
           </article>
-          <button className='submit-button' onClick={handleSubmit}>Submit</button>
+          <div className="submit-button-container">
+            <button className='submit-button' onClick={handleSubmit}>Submit</button>
+          </div>
         </>
       )}
     </section>
