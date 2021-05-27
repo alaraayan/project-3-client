@@ -6,6 +6,7 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import MoviesIndex from './components/common/movie/MoviesIndex'
 import MovieShow from './components/common/movie/MovieShow'
+import MovieSearch from './components/common/movie/MovieSearch'
 import Home from './components/common/Home'
 // import Nav from './components/common/Nav'
 
@@ -16,10 +17,12 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movies/new" component={NewMovie} />
+        <Route path="/movies/search" component={MovieSearch}/>
         <Route path="/movies/:movieId" component={MovieShow} />
         <Route path="/movies" component={MoviesIndex} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        
       </Switch>
       
     </Router>
