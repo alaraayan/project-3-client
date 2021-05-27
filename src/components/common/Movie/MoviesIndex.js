@@ -1,44 +1,82 @@
 import React from 'react'
 import axios from 'axios'
+import MovieCard from './MovieCard'
+import Spinner from '../Spinner'
+import Error from '../Error'
 
 function MoviesIndex() {
-  const [movies, setMovies] = React.useState([])
+  const [movies, setMovies] = React.useState(null)
+  const [isError, setIsError] = React.useState(false)
+  const [moods, setMoods] = React.useState([])
+  const [selectedMoods, setSelectedMoods] = React.useState([])
+
+  const filteredMovies = movies?.filter(movie => {
+    if (!selectedMoods) return true 
+    console.log(movie)
+    console.log(selectedMoods)
+    return selectedMoods.every(selectedMood => movie.moods.map(m => m.mood).includes(selectedMood))
+  })
+
+  const handleClick = (e) => {
+    console.log(`hello ${e.target.value}`)
+    if (selectedMoods.includes(e.target.value)) {
+      const newMoods = selectedMoods.filter(eachMood => eachMood !== e.target.value)
+      setSelectedMoods(newMoods)
+      return 
+    }
+    setSelectedMoods([...selectedMoods, e.target.value])
+    
+  }
+
+  const isLoading = !movies && !isError
 
   React.useEffect(() => {
     const getMovieData = async () => {
       try {
-        const res = await axios.get('/api/movies')
-        setMovies(res.data)
+        const { data } = await axios.get('/api/movies')
+        setMovies(data)
       } catch (err) {
-        console.log(err)
+        setIsError(true)
       }
     }
-    getMovieData()
+    setTimeout(getMovieData, 1000)
   }, [])
 
-  console.log(setMovies)
-  console.log(movies.data)
+  React.useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get('/api/moods')
+      setMoods(data)
+      console.log(data)
+    }
+    getData()
+  }, [])
 
   return (
-    <>
-      <div className="movies_container">
-        {movies.map(movie => (
-          <div className="individual_movies_container" key={movie._id}>
-            {/* display each movie */}
 
-            <figure >
-              <img src={movie.poster} alt={movie.name} width="240" height="125" />
-            </figure>
-            
-            <h2>{movie.title}, {movie.year}</h2>
-            <div className="overflow-text">
-              {movie.plot}
-            </div>
+    <div className="movies_container">
+      {isError && <Error />}
+      {isLoading && <Spinner />}
+
+      {movies && (
+        <>
+          <div>
+
+
+            {moods.map(mood => {
+              return <button onClick={handleClick} key={mood._id} value={mood._id}>{mood.mood}</button>
+            })
+            }
           </div>
-        ))}
-      </div>
+          {filteredMovies.map(movie => {
 
-    </>
+            return <MovieCard key={movie._id} {...movie} />
+
+          })}
+        </>
+      )}
+    </div>
+
+
   )
 }
 
