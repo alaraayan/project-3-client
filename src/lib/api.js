@@ -16,6 +16,26 @@ export function addNewMovie(newMovieData) {
   return axios.post(`${baseUrl}/movies`, newMovieData, headers())
 }
 
+
+// * Movie Requests
+
+export function getAllMovies() {
+  return axios.get(`${baseUrl}/movies`)
+}
+
+export function getSingleMovie(movieId) {
+  return axios.get(`${baseUrl}/movies/${movieId}`)
+}
+
+export function editMovie(id, formdata) {
+  return axios.put(`${baseUrl}/movies/${id}`, formdata, headers())
+}
+
+export function deleteMovie(id) {
+  return axios.delete(`${baseUrl}/movies/${id}`, headers())
+}
+
+
 // * Auth Requests
 
 export function registerUser(formData) {

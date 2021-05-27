@@ -17,13 +17,17 @@ h1, h2 {
   text-transform: uppercase;
 }
 
+// a {
+//   text-decoration: ;
+// }
+
 img.moodflix-logo {
   width: 10rem;
 }
 
 
 .movies-container {
-  max-width: 1055px;  
+  max-width: 100%;  
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
@@ -34,7 +38,7 @@ img.moodflix-logo {
 .individual-movies-container {
   // border: 1px solid #BDBDBD;
   border-radius: 0.75rem;
-  flex-basis: 23%;
+  flex-basis: 20%;
   margin: .5rem;
   padding: 1.25rem;
   height: auto;
@@ -43,14 +47,15 @@ img.moodflix-logo {
   background: white;
   color: black;
   box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+  max-width: 100%;
 
     
     img {
     display: block;
     margin: 0 auto;
     margin-bottom: 5px;
-    object-fit: cover;
-    width: 10rem;
+    //object-fit: cover;
+    height: 30%;
   }
 
   .movie-image-holder {
@@ -69,3 +74,26 @@ img.moodflix-logo {
 
 
 
+.overflow-text {
+  width: 250px;
+  overflow: hidden;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}
+
+// spinner class on loading
+#loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
