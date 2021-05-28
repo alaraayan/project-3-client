@@ -4,9 +4,8 @@ import { useHistory, Link } from 'react-router-dom'
 import ImdbSelect from './ImdbSelect'
 import MoodButtons from '../lib/MoodButtons'
 import RatingDisplay from './RatingDisplay'
-
 import { addNewMovie } from '../../../lib/api'
-import moodflixLogo from '../../../assets/images/moodflix-logo.png'
+
 
 const format = (string) => string.split(',').map((s) => s.trim())
 
@@ -82,8 +81,6 @@ function NewMovie() {
 
   return (
     <section id="new-movie">
-      <Link to="/">
-        <img src={moodflixLogo} alt="moodflix logo" className="moodflix-logo" /></Link>
       <h1>Add a movie to Moodflix</h1>
       <ImdbSelect setError={setError} setMovieData={setMovieData} />
       {error && <p>{error}</p>}
