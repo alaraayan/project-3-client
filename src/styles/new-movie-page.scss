@@ -1,4 +1,8 @@
 section#new-movie {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  margin: 2rem;
+  padding: 30px;
+  border-radius: 1rem;
   font-size: 80%;
   margin: 30px;
 
@@ -11,7 +15,7 @@ section#new-movie {
 
   img.poster {
     margin: 5px 20px;
-    width: 400px;
+    width: 350px;
     box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
   }
   

@@ -43,7 +43,7 @@ function MovieShow() {
   movie && console.log(movie)
 
   return (
-    <section id="new-movie">
+    <section className="home-test" id="new-movie">
       {isError && <Error />}
       {isLoading && <p>...loading movie - grab the popcorn! 🍿 </p>}
       {movie && (

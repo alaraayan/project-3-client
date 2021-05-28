@@ -19,7 +19,7 @@ function MovieSearch() {
 
   return (
     <>
-      <div className="show-movie-container">
+      <div className="show-movie-container home-test">
         <h1>Search for a movie</h1>
         <label>Title:</label><input className="search" type="search" onChange={handleChange} />
         {error && <p>{error}</p>}
