@@ -4,7 +4,6 @@ import axios from 'axios'
 
 
 function ImdbSelect({ setMovieData, setError }) {
-  // add a try/catch
   const handleLoadOptions = async (inputValue) => {
     setError('')
     try {
@@ -19,7 +18,7 @@ function ImdbSelect({ setMovieData, setError }) {
         label: `${movie.Title}, ${movie.Year}`,
       }))
     } catch (error) {
-      setError('Could not load movies.')
+      setError('Could not load movies. Getting the popcorn ready..  🍿')
     }
   }
 

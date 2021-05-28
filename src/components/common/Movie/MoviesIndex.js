@@ -1,37 +1,32 @@
 import React from 'react'
-import axios from 'axios'
 import MovieCard from './MovieCard'
 import Spinner from '../Spinner'
 import Error from '../Error'
+import MoodButtons from '../lib/MoodButtons'
+import { getAllMovies } from '../../../lib/api'
+
+const sortingFunctions = {
+  alphabetical: (a, b) => a.title < b.title ? -1 : 1,
+  byImdbRating: (a, b) => (a.imdb).slice(2) - (b.imdb).slice(2),
+}
 
 function MoviesIndex() {
   const [movies, setMovies] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
-  const [moods, setMoods] = React.useState([])
   const [selectedMoods, setSelectedMoods] = React.useState([])
-  console.log('selectedMoods', selectedMoods)
-  const filteredMovies = movies?.filter(movie => {
-    if (!selectedMoods.length) return true 
-
-    return selectedMoods.every(selectedMood => movie.moods.map(m => m.mood.mood).includes(selectedMood))
-  })
-
-  const handleClick = (e) => {
-    if (selectedMoods.includes(e.target.value)) {
-      const newMoods = selectedMoods.filter(eachMood => eachMood !== e.target.value)
-      setSelectedMoods(newMoods)
-      return 
-    }
-    setSelectedMoods([...selectedMoods, e.target.value])
-    
-  }
-
   const isLoading = !movies && !isError
+
+  const filteredMovies = movies?.filter(movie => {
+    if (!selectedMoods.length) {
+      return true
+    } 
+    return selectedMoods.every(selectedMood => movie.moods.map(m => m.mood.mood).includes(selectedMood))
+  }).sort(sortingFunctions.alphabetical)
 
   React.useEffect(() => {
     const getMovieData = async () => {
       try {
-        const { data } = await axios.get('/api/movies')
+        const { data } = await getAllMovies()
         setMovies(data)
       } catch (err) {
         setIsError(true)
@@ -40,49 +35,30 @@ function MoviesIndex() {
     setTimeout(getMovieData, 1000)
   }, [])
 
-  React.useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get('/api/moods')
-      setMoods(data)
-      console.log(data)
+  const handleClick = (e) => {
+    if (selectedMoods.includes(e.target.value)) {
+      return setSelectedMoods(selectedMoods.filter(mood => mood !== e.target.value))
     }
-    getData()
-  }, [])
-
+    setSelectedMoods([...selectedMoods, e.target.value]) 
+  }
 
   return (
-
     <div className="movies-container">
       {isError && <Error />}
       {isLoading && <Spinner />}
-
       {movies && (
         <>
-          <div>
-
-
-            {moods.map(mood => {
-              return <button 
-                onClick={handleClick} 
-                key={mood._id} 
-                value={mood.mood}
-                className={`mood-button ${selectedMoods.includes(mood.mood) ? 'mood-button-selected' : ''}`} 
-              >
-                {mood.mood}
-              </button>
-            })
-            }
+          <div className="moods-select-container">
+            <h2>Movie by Mood</h2>
+            <p className="movie-mood-picker-text">
+              Feeling in the mood for a movie? Select how you&apos;re feeling and check out your movie-mood matches.
+            </p>
+            <MoodButtons onClick={handleClick} selectedMoods={selectedMoods} />
           </div>
-          {filteredMovies.map(movie => {
-
-            return <MovieCard key={movie._id} {...movie} />
-
-          })}
+          {filteredMovies.map(movie => <MovieCard key={movie._id} {...movie} /> )}
         </>
       )}
     </div>
-
-
   )
 }
 
