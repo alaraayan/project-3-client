@@ -4,12 +4,9 @@ function Home() {
   return (
     <>
       <section className="home-test">
-        
-        <h1>
-              MOODFLIX
-        </h1>
           
       </section>
+      <h1>Moodflix Home Page</h1>
       <section>
         <MoviesIndex />
       </section>

@@ -1,5 +1,6 @@
 @use './buttons.scss';
 @use './new-movie-page.scss';
+@use './navbar.scss';
 
 * {
   box-sizing: border-box;
@@ -96,4 +97,10 @@ img.moodflix-logo {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+
+/* TEST CODE */
+.home-test {
+  margin-top: 5em;
 }
