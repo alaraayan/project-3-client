@@ -48,10 +48,10 @@ export function loginUser(formData) {
 
 //* Comment Requests
 
-export function addComment(id, newCommentData) {
-  return axios.post(`${baseUrl}/movies/${id}`, newCommentData, headers())
+export function addNewComment(id, formData) {
+  return axios.post(`${baseUrl}/movies/${id}/comment`, formData, headers())
 }
 
 export function deleteComment(id, commentId) {
-  return axios.delete(`${baseUrl}/movies/${id}`, commentId, headers())
+  return axios.delete(`${baseUrl}/movies/${id}/comment/${commentId}`,  headers())
 }
