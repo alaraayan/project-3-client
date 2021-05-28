@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 function Spinner() {
   return (
     <div id="loading">
-      <Loader type="TailSpin" color="#ffd539" height="100" width="100" timeout={3000}/>
+      <Loader type="TailSpin" color="#DB202C" height="100" width="100" timeout={3000}/>
     </div>
   )
 }

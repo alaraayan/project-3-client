@@ -4,7 +4,6 @@ import axios from 'axios'
 
 
 function ImdbSelect({ setMovieData, setError }) {
-  // add a try/catch
   const handleLoadOptions = async (inputValue) => {
     setError('')
     try {
@@ -19,7 +18,7 @@ function ImdbSelect({ setMovieData, setError }) {
         label: `${movie.Title}, ${movie.Year}`,
       }))
     } catch (error) {
-      setError('Could not load movies.')
+      setError('Could not load movies. Getting the popcorn ready..  🍿')
     }
   }
 
@@ -45,7 +44,7 @@ function ImdbSelect({ setMovieData, setError }) {
       actors: data.Actors,
       plot: data.Plot,
       language: data.Language,
-      ratings: data.Ratings.map(rating => ({source: rating.Source, value: rating.Value})),
+      ratings: data.Ratings.map(rating => ({ source: rating.Source, value: rating.Value })),
       poster: data.Poster,
       moods: [],
     })
