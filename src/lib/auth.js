@@ -13,7 +13,7 @@ export function removeToken() {
 function getPayload() {
 
   const token = getToken()
-  const parts = token.split('.')
+  const parts = token?.split('.')
   if (!token || parts.length < 3 ) {
     return false
   }
