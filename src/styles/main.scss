@@ -2,6 +2,7 @@
 @use './new-movie-page.scss';
 @use './navbar.scss';
 @use './movie-index.scss';
+@use './mood-gallery.scss';
 
 * {
   box-sizing: border-box;
@@ -62,7 +63,6 @@ img.moodflix-logo {
   p {
     width: 50%;
   }
-
 }
 
 .show-movie-container {

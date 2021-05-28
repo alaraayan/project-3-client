@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import ImdbSelect from './ImdbSelect'
 import MoodButtons from '../lib/MoodButtons'
