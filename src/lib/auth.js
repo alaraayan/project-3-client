@@ -38,7 +38,7 @@ export function isOwner(userId) {
   if (!payload) {
     return false
   }
-  return userId === payload.sub
+  return userId === payload.userId
 }
 
 //* ADMIN FUNCTIONS

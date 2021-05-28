@@ -100,11 +100,12 @@ function Nav() {
   }
 
   React.useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const scrollListener = () => {
       (window.scrollY > 150) ? setShowColor(true) : setShowColor(false)
-    })
+    }
+    window.addEventListener('scroll', scrollListener) 
     return () => {
-      window.removeEventListener('scroll')
+      window.removeEventListener('scroll', scrollListener)
     }
   }, [])
 
