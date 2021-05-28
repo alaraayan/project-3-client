@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 const alphabetical = (a, b) => a.mood.mood < b.mood.mood ? -1 : 1
 
 function MovieCard({ _id, poster, year, plot, title, moods }) {
-  console.log(moods)
   return (
     <Link to={`/movies/${_id}`} key={_id}>
       <div className="individual-movies-container" key={_id}>

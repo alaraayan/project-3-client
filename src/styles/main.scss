@@ -38,16 +38,12 @@ p {
   a:link { 
     text-decoration: none; 
   }
-
   a:visited { 
     text-decoration: none; 
   }
-
-  
   a:hover { 
     text-decoration: none; 
   }
-  
   a:active { 
     text-decoration: none; 
   }
@@ -56,6 +52,17 @@ p {
 img.moodflix-logo {
   width: 10rem;
 }
+.hero-contents {
+  background-size: cover; 
+  background-image: url("http://cinemavine.com/wp-content/uploads/2015/08/interstellar-movie-stills-images-2.png"); 
+  background-position: center center;
+  padding: 50px;
+  padding-top: 200px;
+  p {
+    width: 50%;
+  }
+
+}
 
 .show-movie-container {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
@@ -63,7 +70,6 @@ img.moodflix-logo {
   padding: 30px;
   border-radius: 1rem;
 }
-
 .search {
   margin: 30px;
 }

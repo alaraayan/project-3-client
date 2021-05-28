@@ -54,35 +54,35 @@ function MovieShow() {
                   <h2>{movie.year}</h2>
                 </div>
                 <div>
-                  <h3>director</h3>
+                  <h3>Director</h3>
                   <p>{movie.director}</p>
                 </div>
                 <div>
-                  <h3>cast</h3>
+                  <h3>Actors</h3>
                   <p>{movie.actors}</p>
                 </div>
                 <div>
-                  <h3>plot</h3>
+                  <h3>Plot</h3>
                   <p>{movie.plot}</p>
                 </div>
                 <div>
-                  <h4>released</h4>
+                  <h3>Release Date</h3>
                   <p>{movie.released}</p>
                 </div>
                 <div>
-                  <h4>runtime</h4>
+                  <h3>Runtime</h3>
                   <p>{movie.runtime}</p>
                 </div>
                 <div>
-                  <h4>genres</h4>
+                  <h3>Genres</h3>
                   <p>{movie.genres}</p>
                 </div>
                 <div>
-                  <h4>rated</h4>
+                  <h3>Rated</h3>
                   <p>{movie.rated}</p>
                 </div>
                 <div>
-                  <h4>languages</h4>
+                  <h3>Languages</h3>
                   <p>{movie.language}</p>
                 </div>
                 <div>
