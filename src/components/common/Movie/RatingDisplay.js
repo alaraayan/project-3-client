@@ -19,5 +19,3 @@ function RatingDisplay({ rating }) {
 }
 
 export default RatingDisplay
-
-'./'

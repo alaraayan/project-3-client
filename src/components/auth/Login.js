@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
-import { setToken } from '../../lib/auth'
+import { setIsAdmin, setToken } from '../../lib/auth'
 import useForm  from '../../hooks/useForm'
 
 function Login() {
@@ -18,6 +18,7 @@ function Login() {
     try {
       const res = await loginUser(formData)
       setToken(res.data.token)
+      setIsAdmin(res.data.isAdmin)
       history.push('/movies')
     } catch (e) {
       setIsError(true)

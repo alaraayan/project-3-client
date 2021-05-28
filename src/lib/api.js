@@ -45,3 +45,13 @@ export function registerUser(formData) {
 export function loginUser(formData) {
   return axios.post(`${baseUrl}/login`, formData)
 }
+
+//* Comment Requests
+
+export function addComment(id, newCommentData) {
+  return axios.post(`${baseUrl}/movies/${id}`, newCommentData, headers())
+}
+
+export function deleteComment(id, commentId) {
+  return axios.delete(`${baseUrl}/movies/${id}`, commentId, headers())
+}

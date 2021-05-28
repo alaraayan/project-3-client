@@ -45,7 +45,7 @@ function ImdbSelect({ setMovieData, setError }) {
       actors: data.Actors,
       plot: data.Plot,
       language: data.Language,
-      ratings: data.Ratings.map(rating => ({source: rating.Source, value: rating.Value})),
+      ratings: data.Ratings.map(rating => ({ source: rating.Source, value: rating.Value })),
       poster: data.Poster,
       moods: [],
     })

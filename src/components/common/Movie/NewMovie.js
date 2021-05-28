@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import ImdbSelect from './ImdbSelect'
 import RatingDisplay from './RatingDisplay'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { addNewMovie } from '../../../lib/api'
 import moodflixLogo from '../../../assets/images/moodflix-logo.png'
 
@@ -94,7 +94,8 @@ function NewMovie() {
 
   return (
     <section id="new-movie">
-      <img src={moodflixLogo} alt="moodflix logo" className="moodflix-logo"/>
+      <Link to="/">
+        <img src={moodflixLogo} alt="moodflix logo" className="moodflix-logo" /></Link>
       <h1>Add a movie to Moodflix</h1>
       <ImdbSelect setError={setError} setMovieData={setMovieData} />
       {error && <p>{error}</p>}
