@@ -55,3 +55,13 @@ export function addNewComment(id, formData) {
 export function deleteComment(id, commentId) {
   return axios.delete(`${baseUrl}/movies/${id}/comment/${commentId}`,  headers())
 }
+
+//* Mood Requests
+
+export function addNewMood(id, formData) {
+  return axios.post(`${baseUrl}/movies/${id}/mood`, formData, headers())
+}
+
+export function deleteMood(id, moodId) {
+  return axios.delete(`${baseUrl}/movies/${id}/mood/${moodId}`,  headers())
+}

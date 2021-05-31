@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { addNewComment } from '../../../lib/api'
 import { isAuthenticated } from '../../../lib/auth'
 import useForm from '../../../hooks/useForm'
@@ -8,22 +8,22 @@ import useForm from '../../../hooks/useForm'
 
 
 function NewComment({ setMovie }) {
-  // const history = useHistory()
   const isLoggedIn = isAuthenticated()
   const { movieId } = useParams()
 
   const { formData, formErrors, handleChange, setFormErrors, setFormData } = useForm({
     text: '',
   })
-
+  console.log(formData)
   const handleAddComment = async event  => {
     event.preventDefault()
-
+    
     try {
       const res = await addNewComment(movieId, formData)
-      // history.push(`/movies/${movieId}`)
+      
       setMovie(res.data)
       setFormData({ text: '' })
+      window.location.reload()
     } catch (e) {
       setFormErrors(e.response.data.formErrors)
       console.log('errors', e.response.data.formErrors)
@@ -32,13 +32,13 @@ function NewComment({ setMovie }) {
 
   return (
     <>
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <div>
           <form onSubmit={handleAddComment}>
             <div>
-              <label>Add a comment:</label>
+              <label>Leave Comment:</label>
               <textarea
-                placeholder="Add a comment..."
+                placeholder="Tell us what you think..."
                 name="text"
                 value={formData?.text}
                 onChange={handleChange}
@@ -50,7 +50,27 @@ function NewComment({ setMovie }) {
             <button>Send</button>
           </form>
         </div>
-      )}
+      )
+        :
+        (
+          <div>
+            <div>
+              <label>Leave Comment:</label>
+              <textarea
+                readOnly
+                placeholder="Tell us what you think, but first, you must login..."
+                name="text"
+              />
+              <Link to="/login"><button>Login</button></Link>
+              <h5>Not a member? <Link to="/register">Register</Link> instead</h5>
+              {formErrors.text && (
+                <p>{formErrors.text}</p>
+              )}
+            </div>
+            
+          </div>
+        ) }
+      
     </>
   )
 }

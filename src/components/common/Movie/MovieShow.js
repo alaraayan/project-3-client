@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import { getSingleMovie, deleteMovie, deleteComment } from '../../../lib/api'
 import { isAdmin, isOwner } from '../../../lib/auth'
 import NewComment from '../comment/NewComment'
+import { isAuthenticated } from '../../../lib/auth'
 import Error from '../Error'
 import RatingDisplay from './RatingDisplay'
 
@@ -15,6 +16,7 @@ function MovieShow() {
   const [isError, setIsError] = React.useState(null)
   const isLoading = !movie && !isError
   const adminStatus = isAdmin()
+  const isLoggedIn = isAuthenticated()
   // const isLoggedIn = isAuthenticated()
   console.log(adminStatus)
 
@@ -45,8 +47,9 @@ function MovieShow() {
     }) })
   }
 
+  
 
-  movie && console.log(movie)
+  movie && console.log(movie.moods)
 
   return (
     <section className="home-test" id="new-movie">
@@ -61,7 +64,8 @@ function MovieShow() {
               </div>
               <div>
                 <div>
-                  <h1>{movie.title}</h1>
+                  <h1>{movie.title} <span>({movie.year})</span></h1> 
+                  
                   {movie.moods.map(({ mood }) => (
                     <button
                       key={mood._id}
@@ -71,7 +75,10 @@ function MovieShow() {
                       {mood.mood}
                     </button>
                   ))}
-                  <h2>{movie.year}</h2>
+                  <div>
+                    {isLoggedIn && <Link to={`/movies/${movie._id}/mood`} className="button"
+                    ><button>Add Moods</button></Link>}
+                  </div>
                 </div>
                 <div>
                   <h3>Director</h3>
@@ -118,13 +125,10 @@ function MovieShow() {
             {isAdmin() && (
               <>
                 <div>
-                  <button><Link
-                    to={`/movies/${movie._id}/edit`} className="button"
-                  >
-                    Edit this Movie
-                  </Link></button>
                   <button onClick={handleDeleteMovie}>
-                    Delete this Movie
+                    <span className="material-icons orange600">
+                      delete
+                    </span>Delete Movie
                   </button>
                 </div>
               </>
@@ -133,18 +137,21 @@ function MovieShow() {
           <div>
             <div>
               <h3>Comments</h3>
+              <NewComment movie={movie} setMovie={setMovie}/>
               {movie.comments.map((comment) => {
                 return <div key={comment._id} >
-                  <h6>{comment.user.username}</h6>
+                  <h4>By {comment.user.username}</h4>
                   <p>{comment.text}</p>
                   {(isAdmin() || isOwner(comment.user._id)) &&
-                    <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button>
+                    <button onClick={() => handleDeleteComment(comment._id)}><span className="material-icons orange600">
+                    delete
+                    </span></button>
                   }
                 </div>
               })}
             </div>
           </div>
-          <NewComment movie={movie} setMovie={setMovie}/>
+          
           {/* {
             isLoggedIn && (
               <div>
