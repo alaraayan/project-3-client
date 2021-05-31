@@ -82,10 +82,13 @@ $off-black-transparent: rgba(24, 22, 22, 0.945);
 }
 
 .navbar-item  {
-  color:white;
+  color: white;
   text-decoration: none;
   font-size: 17px;
   text-transform: uppercase;
+  a:link {
+    color: white;
+  }
 }
 
 .navbar-item:hover {

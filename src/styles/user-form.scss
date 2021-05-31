@@ -1,6 +1,6 @@
 $off-black: rgba(24, 22, 22, 0.91);
 $grey: rgb(69,69,69);
-$light-grey: rgb(131,127,125);
+$light-grey: rgb(116, 113, 111);
 $button-color: rgb(248, 68, 68);
 $button-hover-color: rgb(202, 52, 52);
 $button-selected-color: rgb(121, 25, 25);
@@ -9,7 +9,7 @@ $button-selected-color: rgb(121, 25, 25);
   background: url('../../src/assets/images/background-user.jpg');
   height: 100vh;
   background-size: cover; 
-  
+  background-attachment: fixed;
 }
 
 .form-container {
@@ -20,19 +20,19 @@ $button-selected-color: rgb(121, 25, 25);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 4px;
+  border-radius: 1rem;
   color: white;
   margin-top: 5%;
   position: fixed;
   .user-info{
-    color: white;
-    background-color: $grey;
+    color: black;
+    background-color: white;
     outline: none;
     width:250px;
     padding: 10px 10px;
     border-radius: 0.2rem;
     border: solid 1px transparent;
-    cursor:text;
+    cursor: text;
     margin: 5px 0;
   }
   ::placeholder{
@@ -47,7 +47,7 @@ $button-selected-color: rgb(121, 25, 25);
     font-size: 18px;
   }
   h5{
-    color: $light-grey;
+    color: white;
   }
   p{
     color: rgb(238, 148, 13);
@@ -58,5 +58,8 @@ $button-selected-color: rgb(121, 25, 25);
   footer{
     margin-top: none;
     text-align: right;
+  }
+  a {
+    color: $button-hover-color;
   }
 }

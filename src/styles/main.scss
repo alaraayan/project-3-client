@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'open sans', sans-serif;
   font-size: 1rem;
 }
 
@@ -43,18 +43,26 @@ p {
   }
 
   /* LINK STYLES */
-  a:link { 
+  a:link:not(.navbar-item):not(.button) { 
     text-decoration: none; 
-    color: unset;
+    //color: unset;
+    color: rgb(223, 55, 55);
   }
-  a:visited { 
+
+  a:visited:not(.navbar-item):not(.button) { 
     text-decoration: none; 
+    color: rgb(223, 55, 55);
   }
   a:hover { 
     text-decoration: none; 
+    color: rgb(223, 55, 55);
   }
   a:active { 
     text-decoration: none; 
+  }
+  a.button {
+    color: white;
+    text-decoration: none;
   }
 
 /* IMAGE STYLES */

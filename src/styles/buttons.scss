@@ -38,6 +38,8 @@ button:not(.mood-button):focus {
 .buttons-container {
   margin: 20px;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
   }
 
 .mood-buttons-container {
@@ -54,6 +56,7 @@ button:not(.mood-button):focus {
   margin: 3px;
   height: 1.5rem;
   outline: none;
+  font-size: 14px;
   color: white;
   text-transform: unset;
   background-color: $mood-button-color;
@@ -78,6 +81,7 @@ button:not(.mood-button):focus {
 
 button.mood-button.on-card {
   padding: 5px;
+  margin: 4px 4px 0 0;
   background: rgba(255, 0, 0, 0.767);
   display: inline-flex;
 }

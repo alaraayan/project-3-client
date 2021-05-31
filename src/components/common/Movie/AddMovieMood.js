@@ -168,7 +168,7 @@ function AddMovieMood() {
                 ))}
               
               
-                <h2>Add the moods you think fits this movie:</h2>
+                <h2>Add the moods you think fit this movie:</h2>
                 {newAvailableMoods.map( mood => (
                   <button 
                     key={mood}
@@ -179,8 +179,8 @@ function AddMovieMood() {
                     {mood}
                   </button>
                 ))}
-                <div>
-                  <button type="submit" className="submit-button">Add moods</button>
+                <div className="buttons-container">
+                  <button type="submit" className="button">Add moods</button>
                 </div>
               </div>
             </article>
