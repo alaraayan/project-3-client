@@ -36,7 +36,6 @@ function NewComment({ setMovie }) {
         <div>
           <form onSubmit={handleAddComment}>
             <div>
-              <label>Add a comment:</label>
               <textarea
                 placeholder="Add a comment..."
                 name="text"

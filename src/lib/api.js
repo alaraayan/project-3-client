@@ -55,3 +55,9 @@ export function addNewComment(id, formData) {
 export function deleteComment(id, commentId) {
   return axios.delete(`${baseUrl}/movies/${id}/comment/${commentId}`,  headers())
 }
+
+//* Mood Requests
+
+export function getAllMoods() {
+  return axios.get('/api/moods')
+}

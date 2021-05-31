@@ -49,9 +49,9 @@ function MovieShow() {
   movie && console.log(movie)
 
   return (
-    <section className="home-test" id="new-movie">
+    <section id="new-movie">
       {isError && <Error />}
-      {isLoading && <p>...loading movie - grab the popcorn! 🍿 </p>}
+      {isLoading && <p className="error-message">...loading movie - grab the popcorn! 🍿 </p>}
       {movie && (
         <>
           <div className="show-movie-container">
@@ -71,38 +71,37 @@ function MovieShow() {
                       {mood.mood}
                     </button>
                   ))}
-                  <h2>{movie.year}</h2>
                 </div>
                 <div>
-                  <h3>Director</h3>
+                  <h2>Director</h2>
                   <p>{movie.director}</p>
                 </div>
                 <div>
-                  <h3>Actors</h3>
+                  <h2>Actors</h2>
                   <p>{movie.actors}</p>
                 </div>
                 <div>
-                  <h3>Plot</h3>
-                  <p>{movie.plot}</p>
+                  <h2>Plot</h2>
+                  <p className="plot">{movie.plot}</p>
                 </div>
                 <div>
-                  <h3>Release Date</h3>
+                  <h2>Release Date</h2>
                   <p>{movie.released}</p>
                 </div>
                 <div>
-                  <h3>Runtime</h3>
+                  <h2>Runtime</h2>
                   <p>{movie.runtime}</p>
                 </div>
                 <div>
-                  <h3>Genres</h3>
+                  <h2>Genres</h2>
                   <p>{movie.genres}</p>
                 </div>
                 <div>
-                  <h3>Rated</h3>
+                  <h2>Rated</h2>
                   <p>{movie.rated}</p>
                 </div>
                 <div>
-                  <h3>Languages</h3>
+                  <h2>Languages</h2>
                   <p>{movie.language}</p>
                 </div>
                 <div>
@@ -113,11 +112,9 @@ function MovieShow() {
                 </div>
               </div>
             </article>
-          </div>
-          <div>
             {isAdmin() && (
               <>
-                <div>
+                <div className="buttons-container">
                   <button><Link
                     to={`/movies/${movie._id}/edit`} className="button"
                   >
@@ -130,9 +127,10 @@ function MovieShow() {
               </>
             )}
           </div>
-          <div>
+        
+          <section id="comments">
             <div>
-              <h3>Comments</h3>
+              <h2>Comments</h2>
               {movie.comments.map((comment) => {
                 return <div key={comment._id} >
                   <h6>{comment.user.username}</h6>
@@ -142,10 +140,9 @@ function MovieShow() {
                   }
                 </div>
               })}
-            </div>
-          </div>
-          <NewComment movie={movie} setMovie={setMovie}/>
-          {/* {
+            </div>     
+            <NewComment movie={movie} setMovie={setMovie}/>
+            {/* {
             isLoggedIn && (
               <div>
                 <form>
@@ -160,9 +157,9 @@ function MovieShow() {
                 </form>
               </div>
             )} */}
+          </section>
         </>
       )}
-
     </section >   
     
       

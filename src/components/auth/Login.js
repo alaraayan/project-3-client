@@ -27,37 +27,38 @@ function Login() {
 
   return (
     <>
-      <h2>Log In</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            placeholder="email@email.com"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-          />
-        </div>
-        {isError && (
-          <p>
+      <div className="movie-container">
+        <h2>Log In</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Email</label>
+            <input
+              placeholder="email@email.com"
+              name="email"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
+          {isError && (
+            <p>
             Either email or password were incorrect
-          </p>
-        )}
-        <div>
-          <button type="submit">
+            </p>
+          )}
+          <div>
+            <button type="submit">
             Log In
-          </button>
-        </div>
-      </form>
-
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   )
 }

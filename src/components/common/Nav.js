@@ -6,83 +6,6 @@ import Hamburger from 'hamburger-react'
 import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 
-// function Nav() {
-//   const history = useHistory()
-//   const location = useLocation()
-//   const [isOpen, setIsOpen] = React.useState(false)
-//   const isLoggedIn = isAuthenticated()
-
-//   const handleToggle = () => {
-//     setIsOpen(!isOpen)
-//   }
-
-//   const handleLogout = () => {
-//     removeToken()
-//     history.push('/')
-//   }
-
-//   React.useEffect(() => {
-//     setIsOpen(false)
-//   }, [location.pathname])
-
-//   return (
-//     <nav className="navbar is-dark">
-//       <div className="container">
-//         <div className="navbar-brand">
-//           <Link to="/" className="navbar-item">
-//             Take Me Home
-//           </Link>
-//           <span
-//             className={`navbar-burger ${isOpen ? 'is-active' : ''}`}
-//             aria-label="menu"
-//             aria-expanded="false"
-//             onClick={handleToggle}
-//           >
-//             <span aria-hidden="true"></span>
-//             <span aria-hidden="true"></span>
-//             <span aria-hidden="true"></span>
-//           </span>
-//         </div>
-//         <div className={`navbar-menu ${isOpen ? 'is-active' : ''}`}>
-//           <div className="navbar-start">
-//             <Link to="/movies" className="navbar-item">
-//               Movies
-//             </Link>
-//             {isLoggedIn && <Link to="/movies/new" className="navbar-item">
-//               Add a Movie
-//             </Link>}
-//           </div>
-//           <div className="navbar-end">
-//             <div className="navbar-item">
-//               <div className="buttons">
-//                 {!isLoggedIn ?
-//                   <>
-//                     <Link to="/register" className="button is-warning">
-//                   Register
-//                     </Link>
-//                     <Link to="/login" className="button is-warning">
-//                   Log In
-//                     </Link>
-//                   </>
-//                   :
-//                   <button
-//                     className="button is-warning"
-//                     onClick={handleLogout}
-//                   >
-//                   Logout
-//                   </button>
-//                 }
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </nav>
-//   )
-// }
-
-// export default Nav
-
 
 function Nav() {
   const history = useHistory()
@@ -111,16 +34,16 @@ function Nav() {
 
   return (
     <>
-      <div className={`navbar ${showColor ? 'navbar_show_color' : 'navbar_default_color'}`}>
+      <div className={`navbar ${showColor ? 'navbar-show-color' : 'navbar-default-color'}`}>
         <Link to="/"><img src={moodflixLogo} alt="logo of Moodflix" width="130" /></Link>
 
-        <div className="menu_items_end" onClick={handleSideBar}>
+        <div className="menu-items-end" onClick={handleSideBar}>
           <Hamburger onClick={handleSideBar} />
 
         </div>
       </div>
-      <div className={sidebarShow ? 'side_nav_menu_container active' : 'side_nav_menu_container'}>
-        <ul className="navbar_content_container" >
+      <div className={sidebarShow ? 'side-nav-menu-container active' : 'side-nav-menu-container'}>
+        <ul className="navbar-content-container" >
           <li><Link to="/" className="navbar-item">Home</Link></li>
           <li><Link to="/movies" className="navbar-item">Movies</Link></li>
           {isLoggedIn && <li><Link to="/movies/new" className="navbar-item">New Movie</Link></li>}

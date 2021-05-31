@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import MovieCard from './MovieCard'
+import searchIcon from '../../../assets/images/search-icon.png'
 
 
 function MovieSearch() {
@@ -13,21 +14,31 @@ function MovieSearch() {
       const { data } = await axios.get(`/api/movies/search?title=${e.target.value}`)
       setMovies(data)
     } catch (error) {
-      setError('Could not load movies. Getting the popcorn ready..  🍿')
+      setError('Could not load movies. Get the popcorn ready..  🍿')
     }
   }
 
   return (
-    <>
-      <div className="show-movie-container home-test">
-        <h1>Search for a movie</h1>
-        <label>Title:</label><input className="search" type="search" onChange={handleChange} />
-        {error && <p>{error}</p>}
-        <div className="movies-container">
-          {movies.map(movie => <MovieCard key={movie._id} {...movie} />)}
+    <div className="movie-container">
+      <div className="header">
+        <div className="landing-image-container">
+
         </div>
       </div>
-    </>
+      <h1>Search for a movie</h1>
+      <p>Got a particular movie that you are looking for?</p>
+        
+        
+      <div className="search-wrapper">
+        <img className="search-icon" src={searchIcon} />
+        <input className="search" type="search" onChange={handleChange} placeholder="Search..."/>
+        {/* <img className="clear-icon" src="/" /> */}
+        {error && <p>{error}</p>}
+      </div>
+      <div className="movies-container">
+        {movies.map(movie => <MovieCard key={movie._id} {...movie} />)}
+      </div>
+    </div>
   )
 }
 

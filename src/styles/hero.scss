@@ -1,0 +1,30 @@
+.hero-contents {
+  background-size: cover; 
+  background-position: center center;
+  max-height: 525px;
+  .filter-layer {
+    background: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0));
+    padding: 50px;
+    
+    }
+    img {
+      height: 250px;
+    }
+    p {
+      width: 50%;
+      color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 65px;
+      padding: 5px;
+    }
+    h1 {
+      color: white;
+      font-size: 50px;
+    }
+    .line-clamp {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;  
+    }
+}
