@@ -15,9 +15,10 @@ function NewComment({ setMovie }) {
     event.preventDefault()
     try {
       const res = await addNewComment(movieId, formData)
-      // history.push(`/movies/${movieId}`)
+      //history.push(`/movies/${movieId}`)
       setMovie(res.data)
       setFormData({ text: '' })
+
     } catch (e) {
       setFormErrors(e.response.data.formErrors)
       console.log('errors', e.response.data.formErrors)

@@ -55,7 +55,7 @@ function MovieShow() {
       {movie && (
         <>
           <div className="show-movie-container">
-            <article style={{ display: 'flex' }}>
+            <article>
               <div>
                 <img className="poster" src={movie.poster} />
               </div>

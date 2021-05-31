@@ -1,5 +1,6 @@
 import React from 'react'
 import { getBackdropImage } from '../../lib/tmdb'
+import { Link } from 'react-router-dom'
 
 
 function Hero({ movie }) {
@@ -28,9 +29,10 @@ function Hero({ movie }) {
         style={{ backgroundImage: `url("${heroMovie.backdrop}")` }}
       >
         <div className="filter-layer">
-
-          <img src={heroMovie.poster} alt={heroMovie.title} />
-          <h1>{heroMovie.title}</h1>
+          <Link to={`/movies/${heroMovie._id}`}>
+            <img src={heroMovie.poster} alt={heroMovie.title} />
+            <h1>{heroMovie.title}</h1>
+          </Link>
           {heroMovie.moods
             .map((m) => m.mood.mood)
             .map((mood) => (

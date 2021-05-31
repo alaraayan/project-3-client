@@ -63,7 +63,7 @@ img.moodflix-logo {
 img.poster {
   margin: 5px 40px 0 20px;
   width: 350px;
-  box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+  box-shadow: 3px 3px 20px rgba(2, 2, 2, 0.5);
 }
 
 .container {
@@ -73,7 +73,7 @@ img.poster {
 }
 
 .movie-container {
-  margin: 4rem;
+  margin: 2rem 4rem;
   padding: 30px;
   border-radius: 1rem;
   h1 {
@@ -101,8 +101,8 @@ img.poster {
     max-height: 460px;
     background-color: rgb(36, 35, 35);
     //background: url('https://images.unsplash.com/photo-1585647347384-2593bc35786b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80');
-    background-position: bottom center;
-    background-size: cover;
+    // background-position: bottom center;
+    // background-size: cover;
   }
   
 }
@@ -111,8 +111,10 @@ img.poster {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 3rem;
   padding: 30px;
+  font-size: 20px;
 }
 
