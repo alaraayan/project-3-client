@@ -1,0 +1,44 @@
+.main-container-pagenotfound {
+  background-color: #F8F8F8	;
+}
+
+.main-content-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  height: 700px;
+}
+
+.main-content-container > p {
+  font-size: 20px;
+  padding: 50px;
+}
+
+.homepage-link {
+  text-transform: uppercase;
+}
+
+.quotes-container {
+  margin-left: 12em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.quote {
+  width: 60%;
+  margin: 0;
+  background: #ffcccb;
+  padding: 1em;
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-around;
+}
+.quote figcaption,
+.quote blockquote {
+  margin: 1em;
+
+}
+

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import moodflixLogo from '../../assets/images/moodflix-logo.png'
 import Hamburger from 'hamburger-react'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome,faFilm,faSearch,faUsers,faUserPlus, faPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
@@ -115,27 +116,25 @@ function Nav() {
         <Link to="/"><img src={moodflixLogo} alt="logo of Moodflix" width="130" /></Link>
 
         <div className="menu_items_end" onClick={handleSideBar}>
-          <Hamburger onClick={handleSideBar} />
+          <Hamburger toggled={sidebarShow} toggle={setSidebarShow} />
 
         </div>
       </div>
       <div className={sidebarShow ? 'side_nav_menu_container active' : 'side_nav_menu_container'}>
-        <ul className="navbar_content_container" >
-          <li><Link to="/" className="navbar-item">Home</Link></li>
-          <li><Link to="/movies" className="navbar-item">Movies</Link></li>
-          {isLoggedIn && <li><Link to="/movies/new" className="navbar-item">New Movie</Link></li>}
+        <ul className="navbar_content_container" onClick={handleSideBar}>
+          <li><Link to="/" className="navbar-item" ><FontAwesomeIcon className="fa-items-icon" icon={faHome} />Home</Link></li>
+          <li><Link to="/movies" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFilm} />Movies</Link></li>
+          <li><Link to="/movies/search" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faSearch} />Search Movies</Link></li>
+
+          {isLoggedIn && <li><Link to="/movies/new" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faPlus} />New Movie</Link></li>}
           {!isLoggedIn ?
             <>
-              <li><Link to="/register" className="navbar-item">Register</Link></li>
-              <li><Link to="/login" className="navbar-item">Log In</Link></li>
+              <li><Link to="/register" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faUserPlus} />Register</Link></li>
+              <li><Link to="/login" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faUsers} />Log In</Link></li>
             </>
             :
-            <button onClick={handleLogout}>Log out</button>
+            <li className="navbar-item logout-link" onClick={handleLogout}><FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />Log out</li>
           }
-          <li className="search_list_item">
-            <input type="text" placeholder="Search"></input>
-          </li>
-
         </ul>
       </div>
     </>

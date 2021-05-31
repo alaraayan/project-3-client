@@ -15,6 +15,7 @@ $off-black-transparent: rgba(24, 22, 22, 0.945);
   transition-timing-function: ease-in;
   transition: all 0.4s;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
 .navbar_show_color {
@@ -58,13 +59,14 @@ $off-black-transparent: rgba(24, 22, 22, 0.945);
 
 /* Side navbar styling */
 .side_nav_menu_container {
+  width: 350px;
   color:white;
   background-color: $off-black-transparent;
   height: 100%;
   position: fixed;
   z-index: 2;
   right: -100%;
-}
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;}
 
 .side_nav_menu_container.active {
   right: 0;
@@ -94,4 +96,15 @@ $off-black-transparent: rgba(24, 22, 22, 0.945);
 .navbar_content_container {
   padding:0.3em;
   width:100%;
+}
+
+// Font awesome icons
+.fa-items-icon {
+  margin-right: 9px;
+  cursor: pointer;
+}
+
+.logout-link {
+  cursor:pointer;
+  margin-left: 34px;
 }

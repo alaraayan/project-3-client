@@ -66,6 +66,10 @@ function NewMovie() {
       history.push('/movies')
     } catch (e) {
       setError(e.response.data.message)
+      if (e.response.status === 401) {
+        history.push('/unauthorized')
+      }
+
     }
   }
   
