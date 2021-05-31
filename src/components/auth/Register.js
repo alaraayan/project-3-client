@@ -1,12 +1,13 @@
 import React from 'react'
 import useForm from '../../hooks/useForm'
 import { registerUser } from '../../lib/api'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 
 function Register() {
   const history = useHistory()
-  const { formData, formErrors, handleChange, setFormErrors } = useForm({
+  const [error, setError] = React.useState('')
+  const { formData, formErrors, handleChange } = useForm({
     username: '',
     email: '',
     password: '',
@@ -20,18 +21,20 @@ function Register() {
       await registerUser(formData)
       history.push('/login')
     } catch (e) {
-      setFormErrors(e.response.data.formErrors)
+      setError(e.response.data.message)
+      
     }
   }
 
   return (
-    <>
-      <div className="movie-container">
-        <h2>Create a new account:</h2>
-        <form onSubmit={handleSubmit}>
+    <section className="user-forms">
+      <section className="form-container">
+        <h1 className="user-form">Create a new account</h1>
+        <form className="user-form" onSubmit={handleSubmit} setError={setError}>
           <div>
-            <label>Username</label>
+            {/* <label>Username</label> */}
             <input
+              className="user-form user-info"
               placeholder="Username"
               onChange={handleChange}
               name="username"
@@ -42,9 +45,10 @@ function Register() {
             )}
           </div>
           <div>
-            <label>Email</label>
+            {/* <label>Email</label> */}
             <input
-              placeholder="email@email.com"
+              className="user-form user-info"
+              placeholder="Email"
               onChange={handleChange}
               name="email"
               value={formData.email}
@@ -54,8 +58,9 @@ function Register() {
             )}
           </div>
           <div>
-            <label>Password</label>
+            {/* <label>Password</label> */}
             <input
+              className="user-form user-info"
               type="password"
               placeholder="Password"
               onChange={handleChange}
@@ -67,8 +72,9 @@ function Register() {
             )}
           </div>
           <div>
-            <label>Password Confirmation</label>
+            {/* <label>Password Confirmation</label> */}
             <input
+              className="user-form user-info"
               type="password"
               placeholder="Password Confirmation"
               onChange={handleChange}
@@ -76,17 +82,22 @@ function Register() {
               value={formData.passwordConfirmation}
             />
             {formErrors.passwordConfirmation && (
-              <p>{formErrors.passwordConfirmation}</p>
+              <p className="user-form">{formErrors.passwordConfirmation}</p>
             )}
           </div>
+          {error && <p>{error}</p>}
           <div>
-            <button type="submit">
+            <button type="submit" className="user-form submit-button">
             Register
             </button>
+            
           </div>
         </form>
-      </div>
-    </>
+        <footer>
+          <h5>Already a member? <span><Link to="/login">Login instead.</Link></span> </h5>
+        </footer>
+      </section>
+    </section>
   )
 }
 

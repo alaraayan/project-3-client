@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-
 function NotAuthorized() {
   const quotes = [
     [{ moviename: 'Jaws', character: 'Martin Brody', quote: '\'You\'re gonna need a bigger boat\'' }],
@@ -12,12 +11,7 @@ function NotAuthorized() {
     [{ moviename: 'Fight Club (1999)', character: 'The Narrator', quote: '\'I am Jack\'s missing page\'' }],
     [{ moviename: 'Star Wars: Episode IV - A New Hope (1977)', character: 'Obi-Wan Kenobi', quote: '\'This is not the webpage you\'re looking for.\'' }]
   ]
-
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
-
-
-
-
   return (
     <div className="main-container-pagenotfound">
       <div className="main-content-container">
@@ -41,14 +35,11 @@ function NotAuthorized() {
               </div>
               <p>Unauthorized request! Please login in order to proceed. Go to the <Link className="homepage-link" to="/">homepage »</Link> </p>
               <p>or register here :  <Link className="homepage-link" to="/register">Register »</Link></p>
-
             </>
           )
         })}
       </div>
-
     </div>
   )
 }
-
 export default NotAuthorized

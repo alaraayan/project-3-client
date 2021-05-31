@@ -1,0 +1,62 @@
+$off-black: rgba(24, 22, 22, 0.91);
+$grey: rgb(69,69,69);
+$light-grey: rgb(131,127,125);
+$button-color: rgb(248, 68, 68);
+$button-hover-color: rgb(202, 52, 52);
+$button-selected-color: rgb(121, 25, 25);
+
+.user-forms{
+  background: url('../../src/assets/images/background-user.jpg');
+  height: 100vh;
+  background-size: cover; 
+  
+}
+
+.form-container {
+  background-color: $off-black;
+  border: $off-black 2px solid;
+  padding: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  color: white;
+  margin-top: 5%;
+  position: fixed;
+  .user-info{
+    color: white;
+    background-color: $grey;
+    outline: none;
+    width:250px;
+    padding: 10px 10px;
+    border-radius: 0.2rem;
+    border: solid 1px transparent;
+    cursor:text;
+    margin: 5px 0;
+  }
+  ::placeholder{
+    color: $light-grey;
+    font-size: 14px;
+  }
+  button.user-form {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-family: 'Bebas Neue', cursive;
+    width: 250px;
+    font-size: 18px;
+  }
+  h5{
+    color: $light-grey;
+  }
+  p{
+    color: rgb(238, 148, 13);
+  }
+  span {
+    color: white;
+  }
+  footer{
+    margin-top: none;
+    text-align: right;
+  }
+}

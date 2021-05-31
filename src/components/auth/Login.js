@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
 import { setIsAdmin, setToken } from '../../lib/auth'
 import useForm  from '../../hooks/useForm'
@@ -17,7 +17,9 @@ function Login() {
 
     try {
       const res = await loginUser(formData)
+      console.log('made it to res', res)
       setToken(res.data.token)
+
       setIsAdmin(res.data.isAdmin)
       history.push('/movies')
     } catch (e) {
@@ -26,21 +28,24 @@ function Login() {
   }
 
   return (
-    <>
-      <div className="movie-container">
-        <h2>Log In</h2>
-        <form onSubmit={handleSubmit}>
+    <section className="user-forms">
+      <section className="form-container">
+        <h1 className="user-form">Log In</h1>
+        <form className="user-form" onSubmit={handleSubmit} >
+          
           <div>
-            <label>Email</label>
+            {/* <label>Email</label> */}
             <input
-              placeholder="email@email.com"
+              className="user-form user-info"
+              placeholder="Email"
               name="email"
               onChange={handleChange}
             />
           </div>
           <div>
-            <label>Password</label>
+            {/* <label>Password</label> */}
             <input
+              className="user-form user-info"
               type="password"
               placeholder="Password"
               name="password"
@@ -52,15 +57,22 @@ function Login() {
             Either email or password were incorrect
             </p>
           )}
+        
           <div>
-            <button type="submit">
+            <button type="submit" className="user-form submit-button">
             Log In
             </button>
           </div>
+            
         </form>
-      </div>
-    </>
+        <footer>
+          <h5 className="user-form">New to Moodflix? <span><Link to="/register">Register now</Link></span></h5>
+        </footer>
+        
+      </section>
+    </section>
+            
   )
-}
+} 
 
 export default Login

@@ -20,9 +20,10 @@ function MoviesIndex() {
     if (!selectedMoods.length) {
       return true
     } 
+    console.log(selectedMoods)
     return selectedMoods.every(selectedMood => movie.moods.map(m => m.mood.mood).includes(selectedMood))
   }).sort(sortingFunctions.alphabetical)
-
+  
   React.useEffect(() => {
     const getMovieData = async () => {
       try {
