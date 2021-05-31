@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
+import React from 'react'
 import NewMovie from './components/common/movie/NewMovie'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -10,8 +10,11 @@ import MovieSearch from './components/common/movie/MovieSearch'
 import Home from './components/common/Home'
 import Nav from './components/common/Nav'
 import AddMovieMood from './components/common/movie/AddMovieMood'
+import NotFound from './components/common/NotFound'
+import NotAuthorized from './components/common/NotAuthorized'
 
 function App() {
+
   return (
     <Router>
       <Nav />
@@ -24,7 +27,9 @@ function App() {
         <Route path="/movies" component={MoviesIndex} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        
+        {/* for any page not found */}
+        <Route path="/unauthorized" component={NotAuthorized} />
+        <Route path="*" component={NotFound} />
       </Switch>
       
     </Router>

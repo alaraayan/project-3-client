@@ -50,7 +50,7 @@ function ImdbSelect({ setMovieData, setError }) {
     })
   }
 
-  return <AsyncSelect loadOptions={handleLoadOptions} onChange={handleChange} />
+  return <AsyncSelect placeholder="Find a movie" loadOptions={handleLoadOptions} onChange={handleChange} />
 }
 
 export default ImdbSelect

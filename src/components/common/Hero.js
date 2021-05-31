@@ -1,21 +1,53 @@
 import React from 'react'
+import { getBackdropImage } from '../../lib/tmdb'
 
-function Hero() {
+
+function Hero({ movie }) {
+  const [heroMovie, setHeroMovie] = React.useState(movie)
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const backdrop = await getBackdropImage(movie)
+        console.log(backdrop)
+        setHeroMovie({ ...movie, backdrop })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+  }, [movie])
+
+
+  if (!heroMovie) return null
 
   return (
-    <>
-      <header className="hero">
-        <div className="hero-contents">
-          <figure>insert movie poster here</figure>
-          <h1>Interstellar</h1>
-          <button className="mood-button inactive">adventurous</button>
-          <button className="mood-button inactive">epic</button>
-          <button className="mood-button inactive">mind-blowing</button>
-          <p>Interstellar movie plot goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <header className="hero">
+      <div
+        className="hero-contents"
+        style={{ backgroundImage: `url("${heroMovie.backdrop}")` }}
+      >
+        <div className="filter-layer">
+
+          <img src={heroMovie.poster} alt={heroMovie.title} />
+          <h1>{heroMovie.title}</h1>
+          {heroMovie.moods
+            .map((m) => m.mood.mood)
+            .map((mood) => (
+              <button key={mood} className="mood-button inactive">
+                {mood}
+              </button>
+            ))}
+          <p className="line-clamp">
+            {heroMovie.plot}
+          </p>
+
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   )
 }
 
 export default Hero
+
+

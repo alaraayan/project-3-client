@@ -65,3 +65,7 @@ export function addNewMood(id, formData) {
 export function deleteMood(id, moodId) {
   return axios.delete(`${baseUrl}/movies/${id}/mood/${moodId}`,  headers())
 }
+
+export function getAllMoods() {
+  return axios.get('/api/moods')
+}

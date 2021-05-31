@@ -44,19 +44,26 @@ function MoviesIndex() {
   }
 
   return (
-    <div className="movies-container">
+    <div className= "movie-container">
       {isError && <Error />}
       {isLoading && <Spinner />}
       {movies && (
         <>
+          <div className="header">
+            <div className="landing-image-container">
+              
+            </div>
+          </div>
+          <h1>Movie by Mood</h1>
+          <p>
+              Are you in the mood for a movie? Select how you&apos;re feeling and check out your movie-mood suggestions.
+          </p>
           <div className="moods-select-container">
-            <h2>Movie by Mood</h2>
-            <p className="movie-mood-picker-text">
-              Feeling in the mood for a movie? Select how you&apos;re feeling and check out your movie-mood matches.
-            </p>
             <MoodButtons onClick={handleClick} selectedMoods={selectedMoods} />
           </div>
-          {filteredMovies.map(movie => <MovieCard key={movie._id} {...movie} /> )}
+          <div className="movies-container">
+            {filteredMovies.map(movie => <MovieCard key={movie._id} {...movie} /> )}
+          </div>
         </>
       )}
     </div>

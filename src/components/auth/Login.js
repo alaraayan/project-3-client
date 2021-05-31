@@ -17,7 +17,9 @@ function Login() {
 
     try {
       const res = await loginUser(formData)
+      console.log('made it to res', res)
       setToken(res.data.token)
+
       setIsAdmin(res.data.isAdmin)
       history.push('/movies')
     } catch (e) {
@@ -51,7 +53,7 @@ function Login() {
             />
           </div>
           {isError && (
-            <p className="user-form">
+            <p>
             Either email or password were incorrect
             </p>
           )}
@@ -61,7 +63,7 @@ function Login() {
             Log In
             </button>
           </div>
-          
+            
         </form>
         <footer>
           <h5 className="user-form">New to Moodflix? <span><Link to="/register">Register now</Link></span></h5>
@@ -69,7 +71,8 @@ function Login() {
         
       </section>
     </section>
+            
   )
-}
+} 
 
 export default Login

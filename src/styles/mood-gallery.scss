@@ -1,8 +1,46 @@
 $off-black: rgba(24, 22, 22);
 
-.mood-gallery-container {
+.mood-gallery-row {
   background: $off-black;
-  height: 250px;
+  height: 300px;
   color: white;
-  padding: 20px;
+  overflow: hidden;
 }
+
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: fit-content;
+  justify-items: center;
+}
+.row-poster {
+  //align-items: center;
+  position: relative;
+  display: block;
+  transition: transform 500ms;
+
+  img {
+    display: block;
+    width: 150px;
+    height: 212px;
+    object-fit: cover;
+    margin-right: 8px;
+  }
+}
+.horizontal-scroll:focus-within .row-poster,
+.horizontal-scroll:hover .row-poster {
+transform: translateX(-25%);
+}
+.row-poster:focus ~ .row-poster,
+.row-poster:hover ~ .row-poster {
+transform: translateX(25%);
+}
+.horizontal-scroll .row-poster:focus,
+.horizontal-scroll .row-poster:hover {
+  transform: scale(1.5);
+  z-index: 1;
+}
+
+
+

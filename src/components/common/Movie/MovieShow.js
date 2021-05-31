@@ -17,7 +17,7 @@ function MovieShow() {
   const isLoading = !movie && !isError
   const adminStatus = isAdmin()
   const isLoggedIn = isAuthenticated()
-  // const isLoggedIn = isAuthenticated()
+
   console.log(adminStatus)
 
   React.useEffect(() => {
@@ -42,19 +42,21 @@ function MovieShow() {
 
   const handleDeleteComment = async (commentId) => {
     await deleteComment(movie._id, commentId)
-    setMovie({ ...movie, comments: movie.comments.filter((comment) => {
-      return comment._id !== commentId
-    }) })
+    setMovie({
+      ...movie, comments: movie.comments.filter((comment) => {
+        return comment._id !== commentId
+      }),
+    })
   }
 
-  
+
 
   movie && console.log(movie.moods)
 
   return (
-    <section className="home-test" id="new-movie">
+    <section id="new-movie">
       {isError && <Error />}
-      {isLoading && <p>...loading movie - grab the popcorn! 🍿 </p>}
+      {isLoading && <p className="error-message">...loading movie - grab the popcorn! 🍿 </p>}
       {movie && (
         <>
           <div className="show-movie-container">
@@ -64,8 +66,8 @@ function MovieShow() {
               </div>
               <div>
                 <div>
-                  <h1>{movie.title} <span>({movie.year})</span></h1> 
-                  
+                  <h1>{movie.title} <span>({movie.year})</span></h1>
+
                   {movie.moods.map(({ mood }) => (
                     <button
                       key={mood._id}
@@ -81,35 +83,35 @@ function MovieShow() {
                   </div>
                 </div>
                 <div>
-                  <h3>Director</h3>
+                  <h2>Director</h2>
                   <p>{movie.director}</p>
                 </div>
                 <div>
-                  <h3>Actors</h3>
+                  <h2>Actors</h2>
                   <p>{movie.actors}</p>
                 </div>
                 <div>
-                  <h3>Plot</h3>
-                  <p>{movie.plot}</p>
+                  <h2>Plot</h2>
+                  <p className="plot">{movie.plot}</p>
                 </div>
                 <div>
-                  <h3>Release Date</h3>
+                  <h2>Release Date</h2>
                   <p>{movie.released}</p>
                 </div>
                 <div>
-                  <h3>Runtime</h3>
+                  <h2>Runtime</h2>
                   <p>{movie.runtime}</p>
                 </div>
                 <div>
-                  <h3>Genres</h3>
+                  <h2>Genres</h2>
                   <p>{movie.genres}</p>
                 </div>
                 <div>
-                  <h3>Rated</h3>
+                  <h2>Rated</h2>
                   <p>{movie.rated}</p>
                 </div>
                 <div>
-                  <h3>Languages</h3>
+                  <h2>Languages</h2>
                   <p>{movie.language}</p>
                 </div>
                 <div>
@@ -120,39 +122,45 @@ function MovieShow() {
                 </div>
               </div>
             </article>
-          </div>
-          <div>
             {isAdmin() && (
               <>
                 <div>
-                  <button onClick={handleDeleteMovie}>
-                    <span className="material-icons orange600">
-                      delete
-                    </span>Delete Movie
-                  </button>
+                  <div className="buttons-container">
+                    <button><Link
+                      to={`/movies/${movie._id}/edit`} className="button"
+                    >
+                        Edit this Movie
+                    </Link></button>
+                    <button onClick={handleDeleteMovie}>
+                      <span className="material-icons orange600">
+                          delete
+                      </span>Delete Movie
+                    </button>
+                  </div>
                 </div>
               </>
             )}
-          </div>
-          <div>
-            <div>
-              <h3>Comments</h3>
-              <NewComment movie={movie} setMovie={setMovie}/>
-              {movie.comments.map((comment) => {
-                return <div key={comment._id} >
-                  <h4>By {comment.user.username}</h4>
-                  <p>{comment.text}</p>
-                  {(isAdmin() || isOwner(comment.user._id)) &&
-                    <button onClick={() => handleDeleteComment(comment._id)}><span className="material-icons orange600">
-                    delete
-                    </span></button>
-                  }
-                </div>
-              })}
-            </div>
-          </div>
           
-          {/* {
+        
+            <section id="comments">
+              <div>
+                <h2>Comments</h2>
+                <NewComment movie={movie} setMovie={setMovie}/>
+                {movie.comments.map((comment) => {
+                  return <div key={comment._id} >
+                    <h4>By {comment.user.username}</h4>
+                    <p>{comment.text}</p>
+                    {(isAdmin() || isOwner(comment.user._id)) &&
+                      <button onClick={() => handleDeleteComment(comment._id)}><span className="material-icons orange600">
+                        delete
+                      </span></button>
+                    }
+                  </div>
+                })}
+              </div>
+          
+          
+              {/* {
             isLoggedIn && (
               <div>
                 <form>
@@ -167,17 +175,19 @@ function MovieShow() {
                 </form>
               </div>
             )} */}
+            </section >
+          </div>
         </>
-      )}
-
+      )
+      }
     </section >   
     
       
   )
 }
-    
-    
-  
+
+
+
 
 
 
