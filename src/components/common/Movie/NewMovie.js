@@ -57,7 +57,11 @@ function NewMovie() {
       await addNewMovie(movieData)
       history.push('/movies')
     } catch (e) {
-      setError(true, e.response.data.message)
+      setError(e.response.data.message)
+      if (e.response.status === 401) {
+        history.push('/unauthorized')
+      }
+
     }
   }
   

@@ -4,21 +4,15 @@ import { addNewComment } from '../../../lib/api'
 import { isAuthenticated } from '../../../lib/auth'
 import useForm from '../../../hooks/useForm'
 
-
-
-
 function NewComment({ setMovie }) {
   // const history = useHistory()
   const isLoggedIn = isAuthenticated()
   const { movieId } = useParams()
-
   const { formData, formErrors, handleChange, setFormErrors, setFormData } = useForm({
     text: '',
   })
-
   const handleAddComment = async event  => {
     event.preventDefault()
-
     try {
       const res = await addNewComment(movieId, formData)
       // history.push(`/movies/${movieId}`)
@@ -29,7 +23,6 @@ function NewComment({ setMovie }) {
       console.log('errors', e.response.data.formErrors)
     }
   }
-
   return (
     <>
       {isLoggedIn && (
@@ -53,8 +46,4 @@ function NewComment({ setMovie }) {
     </>
   )
 }
-
 export default NewComment
-
-
-
