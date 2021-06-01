@@ -1,6 +1,47 @@
 section#new-movie {
-
   padding: 30px;
+  padding-top: 10px;
+
+  .show-movie-container {
+    margin: 6rem 4rem 0;
+    padding: 40px;
+    border-radius: 1rem;
+    article {
+      display: flex;
+    }
+    h2 {
+      margin-top: 20px;
+      color: black;
+    }
+    h1 {
+      color: black;
+    }
+    p { 
+      color: black;
+    }
+  }
+  .ratings-card {
+    border-radius: 10px;
+    // border: 1px solid black;
+    padding: 7px;
+    margin: 5px;
+    display: inline-flex;
+    width: min-content;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.596) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    p {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 20px;
+      margin: 0;
+      padding-bottom: 0;
+    }
+    img {
+      height: 50px;
+      max-height: 100%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
   }
 
 .add-movie-container {
@@ -16,61 +57,46 @@ section#new-movie {
     }
   }
 
-.show-movie-container {
-  margin: 4rem 4rem 0;
-  padding: 30px;
-  border-radius: 1rem;
-  article: {
-    display: flex;
-  }
-  h2 {
-    margin-bottom: -10px;
-    margin-top: 20px;
-    color: black !important;
-  }
-  h1 {
-    color: black !important;
-  }
-  p { 
-    color: black !important;
-  }
-}
-
-
-
-.poster {
-    margin: 5px 20px;
-    width: 350px;
-    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
-  }
-
-.plot {
-  //text-align: justify;
-}
-
-.ratings-card {
-  border-radius: 10px;
-  border: 1px solid black;
-  padding: 7px;
-  margin: 5px;
-  display: inline-flex;
-  width: min-content;
-  //box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
-  p {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 20px;
-  }
-  img {
-    height: 50px;
-    max-height: 100%;
-    display: inline-block;
-    margin-right: 5px;
-  }
-}
 
 #comments {
-  margin: 0 100px;
-  padding: 20px;
+  margin: 50px 100px;
+  padding: 20px 30px;
   border-radius: 1rem;
-  box-shadow: 0 7px 30px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.596) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  h4{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+.comment-textarea {
+  width: 400px;
+  border: 1px solid rgb(184, 30, 30);
+  border-radius: 4px;
+  height: 100px;
+  padding: 12px 20px;
+  background-color: #f8f8f8;
+  resize: none;
+  font-family: unset;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.delete-comment-container {
+  margin-top: 60px;
+}
+
+.show-mood-container { 
+  display: flex;
+}
+
+.add-mood-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
 }

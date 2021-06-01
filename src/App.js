@@ -8,10 +8,11 @@ import MoviesIndex from './components/common/movie/MoviesIndex'
 import MovieShow from './components/common/movie/MovieShow'
 import MovieSearch from './components/common/movie/MovieSearch'
 import Home from './components/common/Home'
-import MovieEdit from './components/common/movie/MovieEdit'
 import Nav from './components/common/Nav'
+import AddMovieMood from './components/common/movie/AddMovieMood'
 import NotFound from './components/common/NotFound'
 import NotAuthorized from './components/common/NotAuthorized'
+// import MovieEdit from './components/common/movie/MovieEdit'
 
 function App() {
 
@@ -22,8 +23,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/movies/new" component={NewMovie} />
         <Route path="/movies/search" component={MovieSearch}/>
-
-        <Route path="/movies/:movieId/edit" component={MovieEdit} />
+        <Route path="/movies/:movieId/mood" component={AddMovieMood} />
+        {/* <Route path="/movies/:movieId/edit" component={MovieEdit} /> */}
         <Route path="/movies/:movieId" component={MovieShow} />
         <Route path="/movies" component={MoviesIndex} />
         <Route path="/register" component={Register} />

@@ -10,6 +10,7 @@ export default function useForm(initialValue) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setFormErrors({ ...formErrors, [e.target.name]: '' })
   }
+  console.log('newFormData is:', formData)
   return { 
     formData, 
     handleChange,

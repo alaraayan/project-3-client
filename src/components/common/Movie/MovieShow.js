@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import { getSingleMovie, deleteMovie, deleteComment } from '../../../lib/api'
 import { isAdmin, isOwner } from '../../../lib/auth'
 import NewComment from '../comment/NewComment'
-import Error from '../Error'
 import NotFound from '../NotFound'
+import { isAuthenticated } from '../../../lib/auth'
 import RatingDisplay from './RatingDisplay'
 
 
@@ -16,7 +16,8 @@ function MovieShow() {
   const [isError, setIsError] = React.useState(null)
   const isLoading = !movie && !isError
   const adminStatus = isAdmin()
-  // const isLoggedIn = isAuthenticated()
+  const isLoggedIn = isAuthenticated()
+
   console.log(adminStatus)
 
   React.useEffect(() => {
@@ -39,30 +40,35 @@ function MovieShow() {
     history.push('/movies')
   }
 
+
   const handleDeleteComment = async (commentId) => {
     await deleteComment(movie._id, commentId)
-    setMovie({ ...movie, comments: movie.comments.filter((comment) => {
-      return comment._id !== commentId
-    }) })
+    setMovie({
+      ...movie, comments: movie.comments.filter((comment) => {
+        return comment._id !== commentId
+      }),
+    })
   }
 
 
-  movie && console.log(movie)
+
+  movie && console.log(movie.moods)
 
   return (
     <section id="new-movie">
       {isError && <NotFound />}
-      {isLoading && <p className="error-message">...loading movie - grab the popcorn! 🍿 </p>}
+      {isLoading && <div className="error-message-container"><p className="error-message">...loading movie - grab the popcorn! 🍿 </p></div>}
       {movie && (
         <>
           <div className="show-movie-container">
-            <article style={{ display: 'flex' }}>
+            <article>
               <div>
                 <img className="poster" src={movie.poster} />
               </div>
               <div>
                 <div>
-                  <h1>{movie.title}</h1>
+                  <h1>{movie.title} <span>({movie.year})</span></h1>
+
                   {movie.moods.map(({ mood }) => (
                     <button
                       key={mood._id}
@@ -72,6 +78,11 @@ function MovieShow() {
                       {mood.mood}
                     </button>
                   ))}
+                  <div className="buttons-container">
+                    {isLoggedIn && <><Link to={`/movies/${movie._id}/mood`} className="button"
+                    ><button>Add Moods</button></Link></>}
+                    
+                  </div>
                 </div>
                 <div>
                   <h2>Director</h2>
@@ -113,62 +124,69 @@ function MovieShow() {
                 </div>
               </div>
             </article>
-            {isAdmin() && (
+            {isLoggedIn && isAdmin() && (
               <>
-                <div className="buttons-container">
-                  <button><Link
-                    to={`/movies/${movie._id}/edit`} className="button"
-                  >
-                    Edit this Movie
-                  </Link></button>
-                  <button onClick={handleDeleteMovie}>
-                    Delete this Movie
-                  </button>
+                <div>
+                  <div className="buttons-container">
+                    {/* <button><Link
+                      to={`/movies/${movie._id}/edit`} className="button"
+                    ><span className="material-icons">
+                        edit
+                      </span>Edit Movie
+                    </Link></button> */}
+                    <button onClick={handleDeleteMovie} className="submit-button">
+                      <span className="material-icons">
+                        delete
+                      </span>Delete Movie
+                    </button>
+                  </div>
                 </div>
               </>
             )}
-          </div>
-        
-          <section id="comments">
-            <div>
-              <h2>Comments</h2>
-              {movie.comments.map((comment) => {
-                return <div key={comment._id} >
-                  <h6>{comment.user.username}</h6>
-                  <p>{comment.text}</p>
-                  {(isAdmin() || isOwner(comment.user._id)) &&
-                    <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button>
-                  }
-                </div>
-              })}
-            </div>     
-            <NewComment movie={movie} setMovie={setMovie}/>
-            {/* {
-            isLoggedIn && (
+
+
+            <section id="comments">
               <div>
-                <form>
-                  <div>
-                    <label>Add a comment:</label>
-                    <textarea
-                      placeholder="Add a comment..."
-                      name="comment"
-                    />
-                  </div>
-                  <button>Send</button>
-                </form>
+                <h2>Comments</h2>
+                <NewComment movie={movie} setMovie={setMovie} />
+                {movie.comments.map((comment) => {
+                  return <section key={comment._id} >
+                    <hr></hr>
+                    <div className="comments-container">
+                      <div>
+                        <h4><span className="material-icons by">
+                        account_circle
+                        </span> By {comment.user.username}</h4>
+                        <p>{comment.text}</p>
+                      </div>
+                      <div className="delete-comment-container">
+                        {isLoggedIn && (isAdmin() || isOwner(comment.user._id)) &&
+                        <button 
+                          onClick={() => handleDeleteComment(comment._id)} className="delete-comment">
+                          <span className="material-icons">
+                          delete
+                          </span>
+                        </button>
+                        }
+                      </div>
+                      
+                    </div>
+                  </section>
+                })}
               </div>
-            )} */}
-          </section>
+            </section >
+          </div>
         </>
-      )}
-    </section >   
-    
-      
+      )
+      }
+    </section >
+
+
   )
 }
-    
-    
-  
+
+
+
 
 
 

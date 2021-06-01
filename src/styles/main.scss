@@ -3,6 +3,7 @@
 @use './navbar.scss';
 @use './movie-index.scss';
 @use './mood-gallery.scss';
+@use './user-form.scss';
 @use './hero.scss';
 @use './search.scss';
 @use './not-found-page.scss';
@@ -16,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'open sans', sans-serif;
   font-size: 1rem;
 }
 
@@ -42,18 +43,26 @@ p {
   }
 
   /* LINK STYLES */
-  a:link { 
+  a:link:not(.navbar-item):not(.button) { 
     text-decoration: none; 
-    color: unset;
+    //color: unset;
+    color: rgb(223, 55, 55);
   }
-  a:visited { 
+
+  a:visited:not(.navbar-item):not(.button) { 
     text-decoration: none; 
+    color: rgb(223, 55, 55);
   }
   a:hover { 
     text-decoration: none; 
+    color: rgb(223, 55, 55);
   }
   a:active { 
     text-decoration: none; 
+  }
+  a.button {
+    color: white;
+    text-decoration: none;
   }
 
 /* IMAGE STYLES */
@@ -63,7 +72,7 @@ img.moodflix-logo {
 img.poster {
   margin: 5px 40px 0 20px;
   width: 350px;
-  box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+  box-shadow: 3px 3px 20px rgba(2, 2, 2, 0.5);
 }
 
 .container {
@@ -73,7 +82,7 @@ img.poster {
 }
 
 .movie-container {
-  margin: 4rem;
+  margin: 2rem 4rem;
   padding: 30px;
   border-radius: 1rem;
   h1 {
@@ -101,18 +110,25 @@ img.poster {
     max-height: 460px;
     background-color: rgb(36, 35, 35);
     //background: url('https://images.unsplash.com/photo-1585647347384-2593bc35786b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80');
-    background-position: bottom center;
-    background-size: cover;
+    // background-position: bottom center;
+    // background-size: cover;
   }
   
 }
 
-.error-message {
-  position: absolute;
+.error-message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message{
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 3rem;
   padding: 30px;
+  font-size: 20px;
 }
 

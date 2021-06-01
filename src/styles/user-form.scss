@@ -1,0 +1,63 @@
+$off-black: rgba(24, 22, 22, 0.91);
+$grey: rgb(69,69,69);
+$light-grey: rgb(116, 113, 111);
+$button-color: rgb(248, 68, 68);
+$button-hover-color: rgb(202, 52, 52);
+$button-selected-color: rgb(121, 25, 25);
+
+.user-forms{
+  background: url('../../src/assets/images/background-user.jpg');
+  height: 100vh;
+  background-size: cover; 
+  background-attachment: fixed;
+}
+
+.form-container {
+  background-color: $off-black;
+  padding: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.7rem;
+  color: white;
+  position: fixed;
+  .user-info{
+    color: black;
+    background-color: white;
+    outline: none;
+    width: 250px;
+    padding: 10px 10px;
+    border-radius: 0.17rem;
+    border: solid 1px transparent;
+    cursor: text;
+    margin: 5px 0;
+  }
+  ::placeholder{
+    color: $light-grey;
+    font-size: 14px;
+  }
+  button.user-form {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-family: 'Bebas Neue', cursive;
+    width: 250px;
+    font-size: 18px;
+  }
+  h5{
+    color: white;
+  }
+  p{
+    color: rgb(238, 148, 13);
+  }
+  span {
+    color: white;
+  }
+  footer{
+    margin-top: none;
+    text-align: right;
+  }
+  a {
+    color: $button-hover-color;
+  }
+}
