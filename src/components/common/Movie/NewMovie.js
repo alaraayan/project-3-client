@@ -1,13 +1,11 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
-
 import ImdbSelect from './ImdbSelect'
 import MoodButtons from '../lib/MoodButtons'
 import RatingDisplay from './RatingDisplay'
 import { addNewMovie } from '../../../lib/api'
 import Error from '../Error'
-
 const initialData = {
   imdb: '',
   title: '',
@@ -32,7 +30,6 @@ function NewMovie() {
   const [movieData, setMovieData] = React.useState(initialData)
   const isLoading = !movieData && !error
   //const adminStatus = isAdmin()
-
   const handleSubmit = async () => {
     try {
       await addNewMovie(movieData)
@@ -43,10 +40,8 @@ function NewMovie() {
       if (e.response.status === 401) {
         history.push('/unauthorized')
       }
-
     }
   }
-  
   const handleToggleMood = ({ target: { value: mood } }) => {
     setMovieData({
       ...movieData,
@@ -55,12 +50,10 @@ function NewMovie() {
         : [...movieData.moods, mood],        
     })
   }
-
   return (
     <div className="movie-container">
       <div className="header">
         <div className="landing-image-container">
-
         </div>
       </div>
       <section id="new-movie">
@@ -121,5 +114,4 @@ function NewMovie() {
     </div>
   )
 }
-
 export default NewMovie
