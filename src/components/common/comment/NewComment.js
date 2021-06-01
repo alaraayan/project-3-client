@@ -31,7 +31,7 @@ function NewComment({ setMovie }) {
           <form onSubmit={handleAddComment}>
             <div>
               <textarea
-                placeholder="Tell us what you felt..."
+                placeholder="Tell us what you thought..."
                 name="text"
                 className="comment-textarea"
                 value={formData?.text}
@@ -51,7 +51,7 @@ function NewComment({ setMovie }) {
             <div>
               <textarea
                 readOnly
-                placeholder="Tell us what you felt, but first, you must login..."
+                placeholder="Tell us what you thought, but first, you must login..."
                 name="text"
                 className="comment-textarea"
               />
