@@ -80,7 +80,7 @@ function MovieShow() {
                   ))}
                   <div className="buttons-container">
                     {isLoggedIn && <><Link to={`/movies/${movie._id}/mood`} className="button"
-                    ><button>Add Moods</button></Link></>}
+                    ><button className="small">Add Moods</button></Link></>}
                     
                   </div>
                 </div>

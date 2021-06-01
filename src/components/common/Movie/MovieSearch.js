@@ -19,25 +19,28 @@ function MovieSearch() {
   }
 
   return (
+    
     <div className="movie-container">
       <div className="header">
         <div className="landing-image-container">
 
         </div>
       </div>
-      <h1>Search for a movie</h1>
-      <p>Got a particular movie that you are looking for?</p>
+      <section id="new-movie">
+        <h1>Search for a movie</h1>
+        <p>Got a particular movie that you are looking for?</p>
         
         
-      <div className="search-wrapper">
-        <img className="search-icon" src={searchIcon} />
-        <input className="search" type="search" onChange={handleChange} placeholder="Search..."/>
-        {/* <img className="clear-icon" src="/" /> */}
-        {error && <p>{error}</p>}
-      </div>
-      <div className="movies-container">
-        {movies.map(movie => <MovieCard key={movie._id} {...movie} />)}
-      </div>
+        <div className="search-wrapper">
+          <img className="search-icon" src={searchIcon} />
+          <input className="search" type="search" onChange={handleChange} placeholder="Search..."/>
+          {/* <img className="clear-icon" src="/" /> */}
+          {error && <p>{error}</p>}
+        </div>
+        <div className="movies-container">
+          {movies.map(movie => <MovieCard key={movie._id} {...movie} />)}
+        </div>
+      </section>
     </div>
   )
 }
