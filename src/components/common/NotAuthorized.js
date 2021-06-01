@@ -33,8 +33,7 @@ function NotAuthorized() {
                   <p> &mdash;{quoteDetails.character}, <cite>{quoteDetails.moviename}</cite></p>
                 </figcaption>
               </div>
-              <p>Unauthorized request! Please login in order to proceed. Go to the <Link className="homepage-link" to="/">homepage »</Link> </p>
-              <p>or register here :  <Link className="homepage-link" to="/register">Register »</Link></p>
+              <p>Unauthorized request! Please <Link className="homepage-link" to="/login">Login</Link> or <Link className="homepage-link" to="/register">Register</Link> in order to proceed. Otherwise, you can head back to the <Link className="homepage-link" to="/">homepage</Link>.</p>
             </>
           )
         })}

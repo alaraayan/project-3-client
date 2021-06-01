@@ -1,11 +1,14 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const alphabetical = (a, b) => a.mood.mood < b.mood.mood ? -1 : 1
 
 function MovieCard({ _id, poster, year, plot, title, moods }) {
+  
   return (
     <>
       <Link to={`/movies/${_id}`} key={_id}>
+
         <div className="individual-movies-container" key={_id}>
           <figure>
             <img src={poster} alt={name} />
@@ -22,8 +25,8 @@ function MovieCard({ _id, poster, year, plot, title, moods }) {
             </div>
           </div>
         </div>
-      </Link>
 
+      </Link>
     </>
   )
 }
