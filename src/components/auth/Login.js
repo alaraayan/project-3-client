@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
 import { setIsAdmin, setToken } from '../../lib/auth'
 import useForm  from '../../hooks/useForm'
+import { ToastContainer, toast } from 'react-toastify'
 
 function Login() {
   const history = useHistory()
@@ -17,10 +18,9 @@ function Login() {
 
     try {
       const res = await loginUser(formData)
-      console.log('made it to res', res)
       setToken(res.data.token)
-
       setIsAdmin(res.data.isAdmin)
+      toast.error('Successfully logged in!')
       history.push('/movies')
     } catch (e) {
       setIsError(true)
@@ -70,6 +70,7 @@ function Login() {
         </footer>
         
       </section>
+      <ToastContainer />
     </section>
             
   )

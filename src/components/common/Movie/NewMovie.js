@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 import ImdbSelect from './ImdbSelect'
 import MoodButtons from '../lib/MoodButtons'
@@ -24,26 +25,6 @@ const initialData = {
   moods: [],
 }
 
-// const tempData =   {
-//   'title': 'Dances with Wolves',
-//   imdb: 'tt0099348',
-//   'year': '1990',
-//   'rated': 'PG-13',
-//   'released': '21 Nov 1990',
-//   'runtime': '181 min',
-//   'genres': 'Adventure, Drama, Western',
-//   'director': 'Kevin Costner',
-//   'actors': 'Kevin Costner, Mary McDonnell, Graham Greene, Rodney A. Grant',
-//   'plot': 'Lt. John Dunbar is dubbed a hero after he accidentally leads Union troops to a victory during the Civil War. He requests a position on the western frontier, but finds it deserted. He soon finds out he is not alone, but meets a wolf he dubs "Two-socks" and a curious Indian tribe. Dunbar quickly makes friends with the tribe, and discovers a white woman who was raised by the Indians. He gradually earns the respect of these native people, and sheds his white-man\'s ways.',
-//   'language': 'English, Sioux, Pawnee',
-//   'poster': 'https://m.media-amazon.com/images/M/MV5BMTY3OTI5NDczN15BMl5BanBnXkFtZTcwNDA0NDY3Mw@@._V1_SX300.jpg',
-//   'ratings': [
-//     { 'source': 'Internet Movie Database', 'value': '8.0/10' },
-//     { 'source': 'Rotten Tomatoes', 'value': '83%' },
-//     { 'source': 'Metacritic', 'value': '72/100' }
-//   ],
-//   'moods': ['uplifting', 'thought-provoking'],
-// }
 
 function NewMovie() {
   const history = useHistory()
@@ -55,6 +36,7 @@ function NewMovie() {
   const handleSubmit = async () => {
     try {
       await addNewMovie(movieData)
+      toast.error('Movie successfully added!')
       history.push('/movies')
     } catch (e) {
       setError(e.response.data.message)
@@ -135,6 +117,7 @@ function NewMovie() {
           </>
         )}
       </section>
+      <ToastContainer />
     </div>
   )
 }

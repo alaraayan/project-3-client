@@ -2,6 +2,7 @@ import React from 'react'
 import useForm from '../../hooks/useForm'
 import { registerUser } from '../../lib/api'
 import { useHistory, Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 
 function Register() {
@@ -19,6 +20,7 @@ function Register() {
 
     try {
       await registerUser(formData)
+      toast.error('Successfully registered! Please log in.')
       history.push('/login')
     } catch (e) {
       setError(e.response.data.message)
@@ -97,6 +99,7 @@ function Register() {
           <h5>Already a member? <span><Link to="/login">Login instead.</Link></span> </h5>
         </footer>
       </section>
+      <ToastContainer />
     </section>
   )
 }

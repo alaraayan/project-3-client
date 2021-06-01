@@ -1,5 +1,6 @@
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import React from 'react'
 import NewMovie from './components/common/movie/NewMovie'
 import Register from './components/auth/Register'
@@ -19,6 +20,7 @@ function App() {
   return (
     <Router>
       <Nav />
+      <ToastContainer />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movies/new" component={NewMovie} />

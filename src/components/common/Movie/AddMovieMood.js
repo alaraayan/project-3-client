@@ -131,7 +131,7 @@ function AddMovieMood() {
   }
 
   return (
-    <section className="home-test" id="new-movie">
+    <section id="new-movie">
       {isError && <Error />}
       {isLoading && <div className="error-message-container"><p className="error-message">Just keep waiting. Just keep waiting. Just keep waiting, waiting, waiting. What do we do? We wait, wait- Dory, Finding Nemo</p></div>}
       {movie && (
