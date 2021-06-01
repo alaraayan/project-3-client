@@ -60,7 +60,7 @@ function MovieShow() {
       {movie && (
         <>
           <div className="show-movie-container">
-            <article style={{ display: 'flex' }}>
+            <article>
               <div>
                 <img className="poster" src={movie.poster} />
               </div>
@@ -77,7 +77,7 @@ function MovieShow() {
                       {mood.mood}
                     </button>
                   ))}
-                  <div>
+                  <div className="buttons-container">
                     {isLoggedIn && <Link to={`/movies/${movie._id}/mood`} className="button"
                     ><button>Add Moods</button></Link>}
                   </div>

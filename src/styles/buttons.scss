@@ -26,22 +26,24 @@ button {
   transition-property: box-shadow;
   transition-duration: 0.35s;
 }
-button:hover {
+button:not(.mood-button):hover {
   background: $button-hover-color;
   box-shadow: 0 2px rgba(#000000, 0.16);
   transform: translateY(0.5px);
 }
-button:focus {
+button:not(.mood-button):focus {
   background-color: $button-selected-color;
 }
 
 .buttons-container {
   margin: 20px;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
   }
 
 .mood-buttons-container {
-  //margin: 20px auto;
+  margin: 20px auto;
 }
 
 .mood-button {
@@ -54,6 +56,7 @@ button:focus {
   margin: 3px;
   height: 1.5rem;
   outline: none;
+  font-size: 14px;
   color: white;
   text-transform: unset;
   background-color: $mood-button-color;
@@ -68,12 +71,17 @@ button:focus {
   box-shadow: 0 2px rgba(#000000, 0.16);
   transform: translateY(0.5px);
 }
+.mood-button.inactive {
+  cursor: default;
+}
+
 .mood-button-selected {
   background-color: $mood-button-selected-color;
 }
 
 button.mood-button.on-card {
   padding: 5px;
+  margin: 4px 4px 0 0;
   background: rgba(255, 0, 0, 0.767);
   display: inline-flex;
 }

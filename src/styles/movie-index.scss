@@ -1,7 +1,7 @@
 /* CONTAINER/CARD STYLES */
 .moods-select-container {
   margin: 10px 50px;
-  padding: 20px;
+  padding: 0 20px;
   width: 80%;
   border-radius: 0.75rem;
   p {
@@ -19,36 +19,36 @@ h1 {
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
-  // margin: 1.5rem auto;
 }
 
 .individual-movies-container {
   border-radius: 0.75rem;
   margin: .5rem;
-  padding: .5rem;
+  padding: 1rem;
   height: auto;
   font-size: 13px;
   background: white;
   color: black;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   max-width: fit-content;
-
     img {
     margin: 0 auto;
     height: 100%;
     width: 240px;
   }
+  h2 {
+    margin-bottom: 1px;
+  }
   .movie-info-on-card {
     padding: 0 20px 10px 20px;
   }
-
   .overflow-text {
     height: 4.5em; 
     line-height: 1.5em;
     overflow: hidden;
+    margin-top: 5px;
   }
 }
-
 
 .line-clamp {
   display: -webkit-box;

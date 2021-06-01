@@ -14,10 +14,10 @@ function NewComment({ setMovie }) {
     event.preventDefault()
     try {
       const res = await addNewComment(movieId, formData)
-      
+      //history.push(`/movies/${movieId}`)
       setMovie(res.data)
       setFormData({ text: '' })
-      window.location.reload()
+
     } catch (e) {
       setFormErrors(e.response.data.formErrors)
       console.log('errors', e.response.data.formErrors)
@@ -27,12 +27,13 @@ function NewComment({ setMovie }) {
     <>
       {isLoggedIn ? (
         <div>
+          <p>Have you seen this movie? Share what you felt about it here. </p>
           <form onSubmit={handleAddComment}>
             <div>
-              <label>Leave Comment:</label>
               <textarea
-                placeholder="Tell us what you think..."
+                placeholder="Tell us what you felt..."
                 name="text"
+                className="comment-textarea"
                 value={formData?.text}
                 onChange={handleChange}
               />
@@ -48,11 +49,11 @@ function NewComment({ setMovie }) {
         (
           <div>
             <div>
-              <label>Leave Comment:</label>
               <textarea
                 readOnly
-                placeholder="Tell us what you think, but first, you must login..."
+                placeholder="Tell us what you felt, but first, you must login..."
                 name="text"
+                className="comment-textarea"
               />
               <Link to="/login"><button>Login</button></Link>
               <h5>Not a member? <Link to="/register">Register</Link> instead</h5>
