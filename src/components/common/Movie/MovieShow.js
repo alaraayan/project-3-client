@@ -123,17 +123,17 @@ function MovieShow() {
                 </div>
               </div>
             </article>
-            {isAdmin() && (
+            {isLoggedIn && isAdmin() && (
               <>
                 <div>
                   <div className="buttons-container">
-                    <button><Link
+                    {/* <button><Link
                       to={`/movies/${movie._id}/edit`} className="button"
                     ><span className="material-icons">
                         edit
                       </span>Edit Movie
-                    </Link></button>
-                    <button onClick={handleDeleteMovie}>
+                    </Link></button> */}
+                    <button onClick={handleDeleteMovie} className="submit-button">
                       <span className="material-icons">
                         delete
                       </span>Delete Movie
