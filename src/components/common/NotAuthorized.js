@@ -21,7 +21,7 @@ function NotAuthorized() {
   return (
     <div className="main-container-pagenotfound">
       <div className="main-content-container">
-        <p>unauthorized request! please register in order to perform the action. Go to the <Link className="homepage-link" to="/">homepage »</Link> </p>
+        <p>unauthorized request! please register/ login in order to perform the action. Go to the <Link className="homepage-link" to="/">homepage »</Link> </p>
         <p>or register here :  <Link className="homepage-link" to="/register">Register »</Link></p>
         {randomQuote.map(quoteDetails => {
           return (

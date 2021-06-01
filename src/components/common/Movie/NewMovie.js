@@ -6,6 +6,8 @@ import MoodButtons from '../lib/MoodButtons'
 import RatingDisplay from './RatingDisplay'
 import { addNewMovie } from '../../../lib/api'
 import Error from '../Error'
+import { isAuthenticated } from '../../../lib/auth'
+import NotAuthorized from '../NotAuthorized'
 
 const initialData = {
   imdb: '',
@@ -46,6 +48,11 @@ const initialData = {
 // }
 
 function NewMovie() {
+  // adding secure route code
+  const isLoggedIn = isAuthenticated()
+  console.log(`are you logged in?: ${isLoggedIn}`)
+  //end of secure route
+
   const history = useHistory()
   const [error, setError] = React.useState('')
   const [movieData, setMovieData] = React.useState(initialData)
@@ -64,78 +71,85 @@ function NewMovie() {
 
     }
   }
-  
+
   const handleToggleMood = ({ target: { value: mood } }) => {
     setMovieData({
       ...movieData,
       moods: movieData.moods.includes(mood)
         ? movieData.moods.filter((m) => m !== mood)
-        : [...movieData.moods, mood],        
+        : [...movieData.moods, mood],
     })
   }
 
   return (
-    <div className="movie-container">
-      <div className="header">
-        <div className="landing-image-container">
+    <>
+      {isLoggedIn ?
+        <div className="movie-container">
+          <div className="header">
+            <div className="landing-image-container">
 
-        </div>
-      </div>
-      <section id="new-movie">
-        <h1>Add a movie to Moodflix</h1>
-        <p>Search for a movie title, then add the movie to the Moodflix library with the moods it invoked in you..</p>
-        <ImdbSelect setError={setError} setMovieData={setMovieData} />
-        {error && <Error />}
-        {isLoading && <p classNane="error-message">...loading movie - grab the popcorn! 🍿 </p>}
-        {movieData.imdb && (
-          <>
-            <div className="show-movie-container">
-              <article style={{ display: 'flex' }}>
-                <div>
-                  <img className="poster" src={movieData.poster} />
-                </div>
-                <div>
-                  <div>
-                    <h1>{movieData.title}</h1>
-                  </div>
-                  <div>
-                    <h2>Director</h2>
-                    <p>{movieData.director}</p>
-                  </div>
-                  <div>
-                    <h2>Actors</h2>
-                    <p>{movieData.actors}</p>
-                  </div>
-                  <div>
-                    <h2>Plot</h2>
-                    <p className="plot">{movieData.plot}</p>
-                  </div>
-                  <div>
-                    <h2>Released</h2>
-                    <p>{movieData.released}</p>
-                  </div>
-                  <div>
-                    <h2>Runtime</h2>
-                    <p>{movieData.runtime}</p>
-                  </div>
-                  <div>
-                    <h2>Genres</h2>
-                    <p>{movieData.genres}</p>
-                  </div>
-                  <div>
-                    {movieData.ratings.map((rating) => <RatingDisplay key={rating.value} rating={rating} /> )}
-                  </div>
-                  <MoodButtons onClick={handleToggleMood} selectedMoods={movieData.moods} />
-                </div>
-              </article>
-              <div className="buttons-container">
-                <button className='button' onClick={handleSubmit}>Submit</button>
-              </div>
             </div>
-          </>
-        )}
-      </section>
-    </div>
+          </div>
+          <section id="new-movie">
+            <h1>Add a movie to Moodflix</h1>
+            <p>Search for a movie title, then add the movie to the Moodflix library with the moods it invoked in you..</p>
+            <ImdbSelect setError={setError} setMovieData={setMovieData} />
+            {error && <Error />}
+            {isLoading && <p classNane="error-message">...loading movie - grab the popcorn! 🍿 </p>}
+            {movieData.imdb && (
+              <>
+                <div className="show-movie-container">
+                  <article style={{ display: 'flex' }}>
+                    <div>
+                      <img className="poster" src={movieData.poster} />
+                    </div>
+                    <div>
+                      <div>
+                        <h1>{movieData.title}</h1>
+                      </div>
+                      <div>
+                        <h2>Director</h2>
+                        <p>{movieData.director}</p>
+                      </div>
+                      <div>
+                        <h2>Actors</h2>
+                        <p>{movieData.actors}</p>
+                      </div>
+                      <div>
+                        <h2>Plot</h2>
+                        <p className="plot">{movieData.plot}</p>
+                      </div>
+                      <div>
+                        <h2>Released</h2>
+                        <p>{movieData.released}</p>
+                      </div>
+                      <div>
+                        <h2>Runtime</h2>
+                        <p>{movieData.runtime}</p>
+                      </div>
+                      <div>
+                        <h2>Genres</h2>
+                        <p>{movieData.genres}</p>
+                      </div>
+                      <div>
+                        {movieData.ratings.map((rating) => <RatingDisplay key={rating.value} rating={rating} />)}
+                      </div>
+                      <MoodButtons onClick={handleToggleMood} selectedMoods={movieData.moods} />
+                    </div>
+                  </article>
+                  <div className="buttons-container">
+                    <button className='button' onClick={handleSubmit}>Submit</button>
+                  </div>
+                </div>
+              </>
+            )}
+          </section>
+        </div>
+        :
+        <NotAuthorized />
+
+      }
+    </>
   )
 }
 

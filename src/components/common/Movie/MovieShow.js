@@ -5,6 +5,7 @@ import { getSingleMovie, deleteMovie, deleteComment } from '../../../lib/api'
 import { isAdmin, isOwner } from '../../../lib/auth'
 import NewComment from '../comment/NewComment'
 import Error from '../Error'
+import NotFound from '../NotFound'
 import RatingDisplay from './RatingDisplay'
 
 
@@ -50,7 +51,7 @@ function MovieShow() {
 
   return (
     <section id="new-movie">
-      {isError && <Error />}
+      {isError && <NotFound />}
       {isLoading && <p className="error-message">...loading movie - grab the popcorn! 🍿 </p>}
       {movie && (
         <>
