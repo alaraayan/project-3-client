@@ -40,6 +40,7 @@ function MovieShow() {
     history.push('/movies')
   }
 
+
   const handleDeleteComment = async (commentId) => {
     await deleteComment(movie._id, commentId)
     setMovie({
@@ -77,9 +78,9 @@ function MovieShow() {
                       {mood.mood}
                     </button>
                   ))}
-                  {isLoggedIn && <><hr></hr><Link to={`/movies/${movie._id}/mood`} className="button"
-                  ><button className="button small">Add Moods</button></Link></>}
                   <div className="buttons-container">
+                    {isLoggedIn && <><Link to={`/movies/${movie._id}/mood`} className="button"
+                    ><button>Add Moods</button></Link></>}
                     
                   </div>
                 </div>
