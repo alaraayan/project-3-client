@@ -38,6 +38,8 @@ section#new-movie {
 
 
 
+
+
 .poster {
     margin: 5px 20px;
     width: 350px;
@@ -73,4 +75,14 @@ section#new-movie {
   padding: 20px;
   border-radius: 1rem;
   box-shadow: 0 7px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.show-mood-container { 
+  display: flex;
+}
+
+.add-mood-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
 }

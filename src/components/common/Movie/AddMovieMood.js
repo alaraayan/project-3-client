@@ -52,10 +52,10 @@ function AddMovieMood() {
         const { data } = await axios.get('/api/moods')
         // console.log('data', data)
         data.sort(alphabetical)
-        const moodsWithNames = data.map( mood => {
+        const moodsWithNames = data.map(mood => {
           return mood.mood
         })
-        
+
         setAllMoods(moodsWithNames)
       } catch (e) {
         setIsError(true)
@@ -68,27 +68,27 @@ function AddMovieMood() {
   // console.log('all moods are', allMoods)
 
   //* Getting available mood options
-  
 
-  const availableMoods = allMoods.filter( mood => !currentMoods.includes(mood))
+
+  const availableMoods = allMoods.filter(mood => !currentMoods.includes(mood))
   // console.log('available moods are', availableMoods)
 
   //* Adding new moods
 
   const [addedMoods, setAddedMoods] = React.useState([])
-  
+
   const handleAddingMoods = (e) => {
-    
+
     const MoodToAdd = e.target.value
     setFormData(addedMoods)
-    setAddedMoods([...addedMoods, MoodToAdd ])
-    
+    setAddedMoods([...addedMoods, MoodToAdd])
+
     console.log('formdata adding:', formData)
   }
-  
+
   // console.log('new addition moods array:', addedMoods)
-  
-  const newAvailableMoods = availableMoods.filter( mood => !addedMoods.includes(mood))
+
+  const newAvailableMoods = availableMoods.filter(mood => !addedMoods.includes(mood))
   // console.log('available moods are', newAvailableMoods)
 
   //* Removing the added moods
@@ -96,7 +96,7 @@ function AddMovieMood() {
   const handleRemovingMoods = (e) => {
     const moodToRemove = e.target.value
     newAvailableMoods.push(moodToRemove)
-    const updatedAddedMoods = addedMoods.filter( mood => mood !== moodToRemove)
+    const updatedAddedMoods = addedMoods.filter(mood => mood !== moodToRemove)
     setAddedMoods(updatedAddedMoods)
     setFormData(updatedAddedMoods)
     console.log('formdata removing:', formData)
@@ -106,17 +106,17 @@ function AddMovieMood() {
   console.log('added moods', addedMoods)
   console.log('current formData', formData)
 
-  
-  
-  
+
+
+
   const handleAddNewMood = async event => {
     event.preventDefault()
-    
+
     try {
       // const newMoods = [...addedMoods]
       const res = await addNewMood(movieId, formData)
       console.log('this should work', res)
-      
+
       setMovie(res.data)
       setFormData(res.data)
       history.goBack()
@@ -124,67 +124,71 @@ function AddMovieMood() {
     } catch (e) {
       console.log('errors')
     }
-    
+
     // try {
     //   const res = await addNewMood(movieId, )
     // }
   }
-  
+
   return (
     <section className="home-test" id="new-movie">
       {isError && <Error />}
-      {isLoading && <p>Just keep waiting. Just keep waiting. Just keep waiting, waiting, waiting. What do we do? We wait, wait- Dory, Finding Nemo</p>}
+      {isLoading && <div className="error-message-container"><p className="error-message">Just keep waiting. Just keep waiting. Just keep waiting, waiting, waiting. What do we do? We wait, wait- Dory, Finding Nemo</p></div>}
       {movie && (
         <form onSubmit={handleAddNewMood}>
-          <div className="show-movie-container">
-            <article style={{ display: 'flex' }}>
+
+          <section className="show-mood-container">
+            <div>
+              <img className="poster" src={movie.poster} />
+            </div>
+            <div className="add-mood-container">
+              <h1>{movie.title} <span>({movie.year})</span></h1>
+
               <div>
-                <img className="poster" src={movie.poster} />
-              </div>
-              
-              
-              
-              <div>
-                <h1>{movie.title} <span>({movie.year})</span></h1> 
-                <h2>moods for this movie:</h2>
-                {currentMoods.map( mood => (
-                  <button
-                    key={mood}
-                    value={mood}
-                    className="mood-button inactive"
-                  >
-                    {mood}
-                  </button>
-                ))}
-                {addedMoods.map( mood => (
-                  <button
-                    key={mood}
-                    value={mood}
-                    onClick={handleRemovingMoods} 
-                    className="mood-button mood-button-selected"
-                  >
-                    {mood}
-                  </button>
-                ))}
-              
-              
-                <h2>Add the moods you think fits this movie:</h2>
-                {newAvailableMoods.map( mood => (
-                  <button 
-                    key={mood}
-                    onClick={handleAddingMoods} 
-                    value={mood}
-                    className="mood-button"
-                  >
-                    {mood}
-                  </button>
-                ))}
-                <div>
-                  <button type="submit" className="submit-button">Add moods</button>
+                <h2>current moods</h2>
+                <div className="mood-button-container">
+                  
+                  {currentMoods.map(mood => (
+                    <button
+                      key={mood}
+                      value={mood}
+                      className="mood-button inactive "
+                    >
+                      {mood}
+                    </button>
+                  ))}
+                  {addedMoods.map(mood => (
+                    <button
+                      key={mood}
+                      value={mood}
+                      onClick={handleRemovingMoods}
+                      className="mood-button mood-button-selected"
+                    >
+                      {mood}
+                    </button>
+                  ))}
+                </div>
+                <h2>available moods</h2>
+                <div className="mood-button-container">
+                  {newAvailableMoods.map(mood => (
+                    <button
+                      key={mood}
+                      onClick={handleAddingMoods}
+                      value={mood}
+                      className="mood-button add-mood"
+                    >
+                      {mood}
+                    </button>
+                  ))}
                 </div>
               </div>
-            </article>
-          </div>
+              <div>
+                <button type="submit" className="submit-button mood-page">Submit selection</button>
+              </div>
+
+            </div>
+          </section>
+
         </form>
       )}
     </section>

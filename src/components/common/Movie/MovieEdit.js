@@ -3,12 +3,11 @@
 // import useForm from '../../../hooks/useForm'
 // import { getSingleMovie, editMovie } from '../../../lib/api'
 // import RatingDisplay from './RatingDisplay'
-// // const format = (string) => string.split(',').map((s) => s.trim())
 
 // export default function MovieEdit() {
 //   const history = useHistory()
 //   const { movieId } = useParams()
-//   // const [movieData, setMovieData] = React.useState(formData)
+//   const [movieData, setMovieData] = React.useState(formData)
 //   const { formData, formErrors, handleChange, setFormErrors, setFormData } = useForm({
 //     imdb: '',
 //     title: '',
@@ -38,16 +37,16 @@
 //     getData()
 //   }, [movieId, setFormData, setFormErrors])
 
-//   console.log('form changed', formData)
-//   console.log('imdb', formData.imdb)
+//   console.log(formData)
 //   const handleSubmit = async event => {
 //     event.preventDefault()
-//     console.log('imdb after submit', formData.imdb)
+
 //     try {
 //       await editMovie(movieId, formData)
+//       const { data } = await getSingleMovie(movieId)
+//       setFormData(data)
 //       console.log('formdata', formData)
-//       // history.push(`/movies/${movieId}`)
-//       history.push('/movies')
+//       history.push(`/movies/${movieId}`)
 //     } catch (e) {
 //       setFormErrors(e.response.data.formErrors)
 //     }

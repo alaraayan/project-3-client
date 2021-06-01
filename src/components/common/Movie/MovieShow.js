@@ -56,7 +56,7 @@ function MovieShow() {
   return (
     <section id="new-movie">
       {isError && <Error />}
-      {isLoading && <p className="error-message">...loading movie - grab the popcorn! 🍿 </p>}
+      {isLoading && <div className="error-message-container"><p className="error-message">...loading movie - grab the popcorn! 🍿 </p></div>}
       {movie && (
         <>
           <div className="show-movie-container">

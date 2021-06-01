@@ -108,12 +108,18 @@ img.poster {
   
 }
 
-.error-message {
-  position: absolute;
+.error-message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message{
   top: 50%;
   left: 50%;
   background-color: white;
   border-radius: 3rem;
   padding: 30px;
+  font-size: 32px;
 }
 
