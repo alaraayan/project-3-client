@@ -22,6 +22,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/movies/new" component={NewMovie} />
         <Route path="/movies/search" component={MovieSearch}/>
+
         <Route path="/movies/:movieId/edit" component={MovieEdit} />
         <Route path="/movies/:movieId" component={MovieShow} />
         <Route path="/movies" component={MoviesIndex} />
@@ -29,8 +30,8 @@ function App() {
         <Route path="/login" component={Login} />
         {/* for any page not found */}
         <Route path="/unauthorized" component={NotAuthorized} />
-        <Route path="*" component={NotFound} />
-        <Route path="/movies/:movieId/*" component={NotFound} />
+
+        <Route exact path="*" component={NotFound} />
 
       </Switch>
       
