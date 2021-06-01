@@ -129,7 +129,7 @@ function NewMovie() {
                 </div>
               </article>
               <div className="buttons-container">
-                <button className='button' onClick={handleSubmit}>Submit</button>
+                <button className='button submit-button' onClick={handleSubmit}>Submit</button>
               </div>
             </div>
           </>

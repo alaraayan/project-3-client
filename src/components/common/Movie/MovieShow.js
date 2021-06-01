@@ -77,9 +77,10 @@ function MovieShow() {
                       {mood.mood}
                     </button>
                   ))}
+                  {isLoggedIn && <><hr></hr><Link to={`/movies/${movie._id}/mood`} className="button"
+                  ><button className="button small">Add Moods</button></Link></>}
                   <div className="buttons-container">
-                    {isLoggedIn && <Link to={`/movies/${movie._id}/mood`} className="button"
-                    ><button>Add Moods</button></Link>}
+                    
                   </div>
                 </div>
                 <div>
@@ -128,61 +129,58 @@ function MovieShow() {
                   <div className="buttons-container">
                     <button><Link
                       to={`/movies/${movie._id}/edit`} className="button"
-                    >
-                        Edit this Movie
+                    ><span className="material-icons">
+                        edit
+                      </span>Edit Movie
                     </Link></button>
                     <button onClick={handleDeleteMovie}>
-                      <span className="material-icons orange600">
-                          delete
+                      <span className="material-icons">
+                        delete
                       </span>Delete Movie
                     </button>
                   </div>
                 </div>
               </>
             )}
-          
-        
+
+
             <section id="comments">
               <div>
                 <h2>Comments</h2>
-                <NewComment movie={movie} setMovie={setMovie}/>
+                <NewComment movie={movie} setMovie={setMovie} />
                 {movie.comments.map((comment) => {
-                  return <div key={comment._id} >
-                    <h4>By {comment.user.username}</h4>
-                    <p>{comment.text}</p>
-                    {(isAdmin() || isOwner(comment.user._id)) &&
-                      <button onClick={() => handleDeleteComment(comment._id)}><span className="material-icons orange600">
-                        delete
-                      </span></button>
-                    }
-                  </div>
+                  return <section key={comment._id} >
+                    <hr></hr>
+                    <div className="comments-container">
+                      <div>
+                        <h4><span className="material-icons by">
+                        account_circle
+                        </span> By {comment.user.username}</h4>
+                        <p>{comment.text}</p>
+                      </div>
+                      <div className="delete-comment-container">
+                        {isLoggedIn && (isAdmin() || isOwner(comment.user._id)) &&
+                        <button 
+                          onClick={() => handleDeleteComment(comment._id)} className="delete-comment">
+                          <span className="material-icons">
+                          delete
+                          </span>
+                        </button>
+                        }
+                      </div>
+                      
+                    </div>
+                  </section>
                 })}
               </div>
-          
-          
-              {/* {
-            isLoggedIn && (
-              <div>
-                <form>
-                  <div>
-                    <label>Add a comment:</label>
-                    <textarea
-                      placeholder="Add a comment..."
-                      name="comment"
-                    />
-                  </div>
-                  <button>Send</button>
-                </form>
-              </div>
-            )} */}
             </section >
           </div>
         </>
       )
       }
-    </section >   
-    
-      
+    </section >
+
+
   )
 }
 

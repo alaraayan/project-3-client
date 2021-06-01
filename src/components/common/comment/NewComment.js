@@ -10,7 +10,7 @@ function NewComment({ setMovie }) {
   const { formData, formErrors, handleChange, setFormErrors, setFormData } = useForm({
     text: '',
   })
-  const handleAddComment = async event  => {
+  const handleAddComment = async event => {
     event.preventDefault()
     try {
       const res = await addNewComment(movieId, formData)
@@ -26,7 +26,7 @@ function NewComment({ setMovie }) {
   return (
     <>
       {isLoggedIn ? (
-        <div>
+        <div className="add-comment-container">
           <p>Have you seen this movie? Share what you felt about it here. </p>
           <form onSubmit={handleAddComment}>
             <div>
@@ -41,13 +41,13 @@ function NewComment({ setMovie }) {
                 <p>{formErrors.text}</p>
               )}
             </div>
-            <button>Send</button>
+            <button className="button small">Send</button>
           </form>
         </div>
       )
         :
         (
-          <div>
+          <div className="add-comment-container">
             <div>
               <textarea
                 readOnly
@@ -55,16 +55,24 @@ function NewComment({ setMovie }) {
                 name="text"
                 className="comment-textarea"
               />
-              <Link to="/login"><button>Login</button></Link>
-              <h5>Not a member? <Link to="/register">Register</Link> instead</h5>
-              {formErrors.text && (
-                <p>{formErrors.text}</p>
-              )}
+              <div 
+                className="button">
+                <Link to="/login">
+                  <button className="button small">
+                    Login
+                  </button></Link>
+              </div>
+              
+              <h5>Not on Moodflix? <Link to="/register">Register</Link> instead</h5>
             </div>
+            {formErrors.text && (
+              <p>{formErrors.text}</p>
+            )}
             
+
           </div>
-        ) }
-      
+        )}
+
     </>
   )
 }

@@ -19,7 +19,7 @@ $button-selected-color: rgb(121, 25, 25);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 1rem;
+  border-radius: 0.7rem;
   color: white;
   position: fixed;
   .user-info{
@@ -28,7 +28,7 @@ $button-selected-color: rgb(121, 25, 25);
     outline: none;
     width: 250px;
     padding: 10px 10px;
-    border-radius: 0.2rem;
+    border-radius: 0.17rem;
     border: solid 1px transparent;
     cursor: text;
     margin: 5px 0;
