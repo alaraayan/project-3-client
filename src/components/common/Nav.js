@@ -3,7 +3,7 @@ import moodflixLogo from '../../assets/images/moodflix-logo.png'
 import Hamburger from 'hamburger-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome,faFilm,faSearch,faUsers,faUserPlus, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-
+import { ToastContainer, toast } from 'react-toastify'
 import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 
@@ -20,6 +20,7 @@ function Nav() {
 
   const handleLogout = () => {
     removeToken()
+    toast.error('Successfully logged out!')
     history.push('/')
   }
 
@@ -56,10 +57,15 @@ function Nav() {
               <li><Link to="/login" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faUsers} />Log In</Link></li>
             </>
             :
-            <li className="navbar-item logout-link" onClick={handleLogout}><FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />Log out</li>
+            <>
+              <li className="navbar-item logout-link" onClick={handleLogout}><FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />Log out</li>
+              <ToastContainer />
+            </>
           }
         </ul>
+        
       </div>
+      
     </>
   )
 }

@@ -1,30 +1,30 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { addNewMood, getSingleMovie } from '../../../lib/api'
-import Error from '../Error'
 import axios from 'axios'
+
+import { isAdmin, isOwner } from '../../../lib/auth'
+import { addNewMood, getSingleMovie, deleteMood } from '../../../lib/api'
+import Error from '../Error'
+
 
 const alphabetical = (a, b) => a.mood < b.mood ? -1 : 1
 
-function AddMovieMood() {
+export default function AddMovieMood() {
   const history = useHistory()
   const { movieId } = useParams()
   const [movie, setMovie] = React.useState(null)
   const [isError, setIsError] = React.useState(null)
   const isLoading = !movie && !isError
-
-  //* Getting the current selected moods of the movie
   const [currentMoods, setCurrentMoods] = React.useState([])
   const [allMoods, setAllMoods] = React.useState([])
-  const [addedMoods, setAddedMoods] = React.useState([])
+
   
   React.useEffect(() => {
     const getData = async () => {
       try {
         const movieResponse = await getSingleMovie(movieId)
         const moodsResponse = await axios.get('/api/moods')
-        console.log(moodsResponse)
         const moodsWithNames = movieResponse.data.moods.map(({ mood }) => {
           return mood.mood
         })
@@ -41,44 +41,60 @@ function AddMovieMood() {
     getData()
   }, [movieId])
 
+
   const availableMoods = allMoods.map(mood => mood.mood).filter(mood => { 
-    return !currentMoods.includes(mood) && !addedMoods.includes(mood)
+    return !currentMoods.includes(mood)
   })
 
 
-  const handleAddingMoods = (e) => {
-    const moodToAdd = e.target.value
-    setAddedMoods([...addedMoods, moodToAdd])
-  }
-
-  const handleRemovingMoods = (e) => {
-    const moodToRemove = e.target.value
-    const updatedAddedMoods = addedMoods.filter(mood => mood !== moodToRemove)
-    setAddedMoods(updatedAddedMoods)
-  }
-
-  const handleSubmitMoods = async event => {
-    event.preventDefault()
+  const handleAddingMoods = async e => {
     try {
-      const moods = addedMoods.map( mood => {
-        const moodId = allMoods.find(currentMood => currentMood.mood === mood)._id
-        return moodId
-      })
-      await addNewMood(movieId, moods)
-      console.log('hello I am here')
-      history.push(`/movies/${movieId}`)
-      console.log('moods', moods)
+      const moodToAdd = e.target.value
+      setCurrentMoods([...currentMoods, moodToAdd])
+      const newMoodId = allMoods.find(currentMood => currentMood.mood === moodToAdd)._id
+      await addNewMood(movieId, newMoodId)
+      const movieWithNewMoods = await getSingleMovie(movieId)
+      setMovie(movieWithNewMoods.data)
     } catch (e) {
-      console.log('errors')
+      console.log(e)
     }
   }
+  
 
+
+  const handleRemovingMoods = async e => {
+    try {
+      const moodNameToRemove = e.target.value
+      const updatedCurrentMoods = currentMoods.filter(mood => mood !== moodNameToRemove)
+      const moodToRemoveId = movie.moods.filter(currentMood => currentMood.mood.mood === moodNameToRemove ).map(moodInfo => moodInfo._id)
+      await deleteMood(movieId, moodToRemoveId)
+      setCurrentMoods(updatedCurrentMoods)
+    } catch (e) {
+      console.log(e)
+    }
+  }  
+
+
+  const handleSubmitMoods = () => {
+    history.push(`/movies/${movieId}`)
+  }
+
+  const owner = (moodNameToFindOwner) => {
+    const userIdToCheck = movie.moods.filter(currentMood => currentMood.mood.mood === moodNameToFindOwner ).map(moodInfo => moodInfo.user._id)
+    console.log(userIdToCheck[0])
+    return isOwner(userIdToCheck[0]) 
+  }
+ 
+  const doNothing = () => {
+    return
+  }
+  
   return (
     <section id="new-movie">
       {isError && <Error />}
-      {isLoading && <div className="error-message-container"><p className="error-message">Just keep waiting. Just keep waiting. Just keep waiting, waiting, waiting. What do we do? We wait, wait- Dory, Finding Nemo</p></div>}
+      {isLoading && <div className="error-message-container"><p className="error-message">...loading moods - grab the popcorn! 🍿</p></div>}
       {movie && (
-        <form onSubmit={handleSubmitMoods}>
+        <section>
 
           <section className="show-mood-container">
             <div>
@@ -96,20 +112,13 @@ function AddMovieMood() {
                       key={mood}
                       value={mood}
                       type="button"
-                      className="mood-button inactive "
+                      onClick={ (isAdmin() || owner(mood)) ? handleRemovingMoods : doNothing }
+                      className={`mood-button ${(isAdmin() || owner(mood)) ? 'mood-button-selected mood-remove-button' : 'inactive'}`}
                     >
                       {mood}
-                    </button>
-                  ))}
-                  {addedMoods.map(mood => (
-                    <button
-                      key={mood}
-                      value={mood}
-                      type="button"
-                      onClick={handleRemovingMoods}
-                      className="mood-button mood-button-selected"
-                    >
-                      {mood}
+                      {/* {isAdmin() && (<span className="material-icons md-18" onClick={doNothing}>
+                          clear
+                      </span>)} */}
                     </button>
                   ))}
                 </div>
@@ -129,16 +138,19 @@ function AddMovieMood() {
                 </div>
               </div>
               <div>
-                <button type="submit" className="submit-button mood-page">Submit selection</button>
+                <button 
+                  type="submit" 
+                  className="submit-button mood-page-submit-button"
+                  onClick={handleSubmitMoods}>
+                    Submit selection
+                </button>
               </div>
 
             </div>
           </section>
 
-        </form>
+        </section>
       )}
     </section>
   )
 }
-
-export default AddMovieMood

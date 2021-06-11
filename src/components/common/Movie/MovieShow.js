@@ -2,10 +2,9 @@ import React from 'react'
 
 import { useParams, useHistory, Link } from 'react-router-dom'
 import { getSingleMovie, deleteMovie, deleteComment } from '../../../lib/api'
-import { isAdmin, isOwner } from '../../../lib/auth'
+import { isAdmin, isOwner, isAuthenticated } from '../../../lib/auth'
 import NewComment from '../comment/NewComment'
 import NotFound from '../NotFound'
-import { isAuthenticated } from '../../../lib/auth'
 import RatingDisplay from './RatingDisplay'
 
 
@@ -15,10 +14,8 @@ function MovieShow() {
   const [movie, setMovie] = React.useState(null)
   const [isError, setIsError] = React.useState(null)
   const isLoading = !movie && !isError
-  const adminStatus = isAdmin()
   const isLoggedIn = isAuthenticated()
 
-  console.log(adminStatus)
 
   React.useEffect(() => {
     const getSingleMovieData = async () => {
@@ -149,7 +146,7 @@ function MovieShow() {
               <div>
                 <h2>Comments</h2>
                 <NewComment movie={movie} setMovie={setMovie} />
-                {movie.comments.map((comment) => {
+                {movie.comments.slice(0).reverse().map((comment) => {
                   return <section key={comment._id} >
                     <hr></hr>
                     <div className="comments-container">

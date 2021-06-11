@@ -1,6 +1,13 @@
 // .main-container-pagenotfound {
 //   // background-color: #F8F8F8	;
 // }
+$off-black: rgba(24, 22, 22, 0.91);
+$grey: rgb(69,69,69);
+$light-grey: rgb(116, 113, 111);
+$button-color: rgb(248, 68, 68);
+$button-hover-color: rgb(202, 52, 52);
+$button-selected-color: rgb(121, 25, 25);
+
 
 .main-content-container {
   max-width: 1050px;
@@ -10,34 +17,81 @@
 }
 
 .main-content-container > p {
-  font-size: 14px;
-  padding: 50px;
+  padding-top: 70px;
 }
 
 .homepage-link {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
   text-transform: uppercase;
 }
 
-.quotes-container {
-  margin-left: 12em;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
 
-.quote {
+.quote-container {
   width: 60%;
   margin: 0;
-  background: #ffcccb;
+  background: rgba(121, 25, 25, 1);
   padding: 1em;
   border-radius: 1em;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
-.quote figcaption,
-.quote blockquote {
-  margin: 1em;
+// .quote figcaption,
+// .quote blockquote {
+//   margin: 1em;
 
+// }
+.error-redirect {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 32px;
+  text-align: center;
 }
+
+.error-container {
+  padding: 1em;
+  padding-top: 0;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.error-text {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 50px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.error-code {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 70px;
+  letter-spacing: 1.9px;
+  text-align: center;
+}
+
+.error {
+  flex: 1;
+}
+
+blockquote {
+  text-align: justify;
+  flex: 3;
+}
+
+.quote {
+  color: rgba(224, 220, 220, 0.9);
+  font-size: 24px;
+  margin-bottom: 3px;
+}
+.quote-caption {
+  text-align: right;
+  font-size: 14px;
+  margin: 0;
+}
+
 

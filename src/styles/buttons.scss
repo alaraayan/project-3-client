@@ -96,21 +96,32 @@ button.mood-button.on-card {
   
 }
 
+.mood-button-container {
+  margin-top: 15px;
+}
+
+//COMMENTED OUT until Line.111-113 in AddMovieMood.js is fixed
+// .mood-remove-button {
+//   padding-right: 0;
+//   .material-icons.md-18 { 
+//     font-size: 14px; 
+//     margin: 0 5px 0 12px;
+//   }
+// }
+
 .small {
   font-family: 'Bebas Neue', cursive;
   font-size: 18px;
   letter-spacing: .5px;
 }
 
-.mood-page {
+.mood-page-submit-button {
   margin-top: 100px;
   margin-left: 60%;
   align-self: flex-end;
 }
 
-.mood-button-container {
-  margin-top: 15px;
-}
+
 
 .delete-comment {
   height: 30px;

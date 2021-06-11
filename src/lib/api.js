@@ -58,8 +58,8 @@ export function deleteComment(id, commentId) {
 
 //* Mood Requests
 
-export function addNewMood(id, moods) {
-  return axios.post(`${baseUrl}/movies/${id}/mood`, { moods: moods }, headers())
+export function addNewMood(id, newMoodId) {
+  return axios.post(`${baseUrl}/movies/${id}/mood`, { mood: newMoodId }, headers())
 }
 
 export function deleteMood(id, moodId) {

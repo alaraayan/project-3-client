@@ -41,6 +41,8 @@ export function isOwner(userId) {
   return userId === payload.userId
 }
 
+console.log(isOwner())
+
 //* ADMIN FUNCTIONS
 export function setIsAdmin(isAdmin) {
   window.localStorage.setItem('isAdmin', isAdmin)
