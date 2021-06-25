@@ -125,12 +125,12 @@ function MovieShow() {
               <>
                 <div>
                   <div className="buttons-container">
-                    {/* <button><Link
-                      to={`/movies/${movie._id}/edit`} className="button"
-                    ><span className="material-icons">
+                    <Link
+                      to={`/movies/${movie._id}/edit`} 
+                    ><button className="submit-button"><span className="material-icons">
                         edit
                       </span>Edit Movie
-                    </Link></button> */}
+                      </button></Link>
                     <button onClick={handleDeleteMovie} className="submit-button">
                       <span className="material-icons">
                         delete

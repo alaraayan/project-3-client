@@ -1,9 +1,9 @@
 import React from 'react'
 import useForm from '../../hooks/useForm'
-import { registerUser } from '../../lib/api'
+import { loginUser, registerUser } from '../../lib/api'
 import { useHistory, Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
-
+import { setIsAdmin, setToken } from '../../lib/auth'
 
 function Register() {
   const history = useHistory()
@@ -20,11 +20,17 @@ function Register() {
 
     try {
       await registerUser(formData)
-      toast.error('Successfully registered! Please log in.')
-      history.push('/login')
+      const loginForm = {
+        email: formData.email,
+        password: formData.password,
+      }
+      const res = await loginUser(loginForm)
+      setToken(res.data.token)
+      setIsAdmin(res.data.isAdmin)
+      toast.error('Successfully registered! Welcome to Moodflix.')
+      history.push('/movies')
     } catch (e) {
       setError(e.response.data.message)
-      
     }
   }
 
@@ -32,7 +38,7 @@ function Register() {
     <section className="user-forms">
       <section className="form-container">
         <h1 className="user-form">Create a new account</h1>
-        <form className="user-form" onSubmit={handleSubmit} setError={setError}>
+        <form className="user-form" onSubmit={handleSubmit}>
           <div>
             {/* <label>Username</label> */}
             <input
