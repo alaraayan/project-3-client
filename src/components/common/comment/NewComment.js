@@ -19,8 +19,8 @@ function NewComment({ setMovie }) {
       setFormData({ text: '' })
 
     } catch (e) {
-      setFormErrors(e.response.data.formErrors)
-      console.log('errors', e.response.data.formErrors)
+      setFormErrors(e.response.data.message)
+      console.log('errors', e.response.data.message)
     }
   }
   return (
