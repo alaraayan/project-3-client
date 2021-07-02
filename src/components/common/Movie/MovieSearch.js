@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import MovieCard from './MovieCard'
 import searchIcon from '../../../assets/images/search-icon.png'
+import { baseUrl } from '../../../config'
 
 
 function MovieSearch() {
@@ -11,7 +12,7 @@ function MovieSearch() {
   const handleChange = async (e) => {
     setError(null)
     try {
-      const { data } = await axios.get(`/api/movies/search?title=${e.target.value}`)
+      const { data } = await axios.get(`${baseUrl}/movies/search?title=${e.target.value}`)
       setMovies(data)
     } catch (error) {
       setError('Could not load movies. Get the popcorn ready..  🍿')
