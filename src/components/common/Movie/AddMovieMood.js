@@ -6,6 +6,7 @@ import axios from 'axios'
 import { isAdmin, isOwner } from '../../../lib/auth'
 import { addNewMood, getSingleMovie, deleteMood } from '../../../lib/api'
 import Error from '../Error'
+import { baseUrl } from '../../../config'
 
 
 const alphabetical = (a, b) => a.mood < b.mood ? -1 : 1
@@ -24,7 +25,7 @@ export default function AddMovieMood() {
     const getData = async () => {
       try {
         const movieResponse = await getSingleMovie(movieId)
-        const moodsResponse = await axios.get('/api/moods')
+        const moodsResponse = await axios.get(`${baseUrl}/moods`)
         const moodsWithNames = movieResponse.data.moods.map(({ mood }) => {
           return mood.mood
         })
