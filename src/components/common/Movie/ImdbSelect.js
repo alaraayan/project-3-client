@@ -8,7 +8,7 @@ function ImdbSelect({ setMovieData, setError }) {
     setError('')
     try {
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=1874d202&type=movie&s=${inputValue}`
+        `https://www.omdbapi.com/?apikey=1874d202&type=movie&s=${inputValue}`
       )
       if (data.Response === 'False') {
         return []
@@ -25,7 +25,7 @@ function ImdbSelect({ setMovieData, setError }) {
   const handleChange = async ({ value: imdbID }) => {
     setError('')
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?apikey=1874d202&type=movie&plot=full&i=${imdbID}`
+      `https://www.omdbapi.com/?apikey=1874d202&type=movie&plot=full&i=${imdbID}`
     )
     if (data.Response === 'False') {
       setError('There was an error setting the data')

@@ -67,5 +67,5 @@ export function deleteMood(id, moodId) {
 }
 
 export function getAllMoods() {
-  return axios.get('/api/moods')
+  return axios.get(`${baseUrl}/moods`)
 }
