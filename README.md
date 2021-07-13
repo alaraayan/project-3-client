@@ -12,6 +12,8 @@ Our Deployed Version link: - https://moodflix-site.netlify.app/
 ![Moodflix App](image/moodflix-deployed.png)
 
 
+link to back-end [click here](https://github.com/rizwanakhtar7/project-3-server)
+
 
 ## Brief
 The brief given was to :
