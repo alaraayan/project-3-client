@@ -19,9 +19,11 @@ export async function getBackdropImage(movie) {
 async function getBaseImageUrl() {
   const { data } = await axios.get(tmdbConfigUrl)
   const baseUrl = data.images['base_url']
+
   const backdropSize = data.images['backdrop_sizes'].find((size) =>
     size.includes('1280')
   )
+
   return baseUrl + backdropSize
 }
 

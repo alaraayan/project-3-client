@@ -14,10 +14,12 @@ function Home() {
     [movies]
   )
 
+  console.log(movies && movies[Math.floor(Math.random() * 166)])
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data: moviesData } = await getAllMovies()
+        
         setMovies(moviesData)
       } catch (error) {
         console.log(error)
@@ -73,12 +75,14 @@ export default Home
 // }
 
 function Gallery({ movies, mood }) {
+  console.log(`mood: ${mood}`)
 
   const filteredMovies = movies.filter((movie) => {
     const movieMoods = movie.moods.map((m) => m.mood.mood) // ['uplifting', 'thought-provoking']
     // Does ['uplifting', 'thought-provoking'] INCLUDE 'uplifting'
     return movieMoods.includes(mood)
   })
+  console.log(filteredMovies)
 
   return (
     <section className="mood-gallery-row">

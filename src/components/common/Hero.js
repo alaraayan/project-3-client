@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 
 function Hero({ movie }) {
   const [heroMovie, setHeroMovie] = React.useState(movie)
-
   React.useEffect(() => {
     const getData = async () => {
       try {
         const backdrop = await getBackdropImage(movie)
-        console.log(backdrop)
         setHeroMovie({ ...movie, backdrop })
       } catch (error) {
         console.log(error)
@@ -18,7 +16,6 @@ function Hero({ movie }) {
     }
     getData()
   }, [movie])
-
 
   if (!heroMovie) return null
 
