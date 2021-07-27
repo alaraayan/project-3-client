@@ -16,7 +16,7 @@ Our Deployed Version link: - https://moodflix-site.netlify.app/
 link to back-end [click here](https://github.com/rizwanakhtar7/project-3-server)
 
 ## Brief
-The brief given was to :
+The brief given was to:
 * **Build a full-stack application** - by making your own backend and your own front-end.
 * **Use an Express API** to serve your data from the Mongo database.
 * **Consume your API with a separate front-end** built with React.
@@ -155,7 +155,7 @@ router.route('/movies')
 
 
 ### Building the front-end 
-When we moved onto the front-end, I worked on the navbar and sidenav using react hooks along with authentication to make sure only admins can view adding a movie component pages and correctly rendering logging out when on the navbar when logged in. I used conditional rendering to achieve this :
+When we moved onto the front-end, I worked on the navbar and sidenav using react hooks along with authentication to make sure only admins can view adding a movie component pages and correctly rendering logging out when on the navbar when logged in. I used conditional rendering to achieve this:
 ```
   <div className={sidebarShow ? 'side-nav-menu-container active' : 'side-nav-menu-container'}>
         <ul className="navbar-content-container" onClick={handleSideBar}>
@@ -198,7 +198,7 @@ When we moved onto the front-end, I worked on the navbar and sidenav using react
   }, [])
 
 ```
-Then I created a filter function which would manipulate the array of movies to display the correct moods according to the button clicked :
+Then I created a filter function which would manipulate the array of movies to display the correct moods according to the button clicked:
 
 ```
 const filteredMovies = movies?.filter(movie => {
@@ -252,7 +252,7 @@ In terms of frontend I became comfortable consuming requests from the backend, u
 
 
 ### Stretch Goals
-Although we successfully reached MVP we had some stretch goals we wanted to implement such as :
+Although we successfully reached MVP we had some stretch goals we wanted to implement such as:
 - Mood Quiz - quiz the user about how they feel and list movies according to what users enter in form or if we found a mood such as depressed / down, to  flip it to positive for the user by listing funny comedies for example.
 
 - I wanted to also try to implement a playlist of favourite movies in relation to each user. They would be able to select there favorite movie and create a playlist accordingly. Also a seen movie button in the front-end to personalise it for each user.
