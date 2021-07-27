@@ -17,7 +17,7 @@ link to back-end [click here](https://github.com/rizwanakhtar7/project-3-server)
 
 ## Brief
 The brief given was to :
-- **Build a full-stack application** - by making your own backend and your own front-end.
+* **Build a full-stack application** - by making your own backend and your own front-end.
 * **Use an Express API** to serve your data from the Mongo database.
 * **Consume your API with a separate front-end** built with React.
 * **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models.
