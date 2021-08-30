@@ -100,3 +100,23 @@ section#new-movie {
   flex-direction: column;
   margin-top: 5px;
 }
+
+.inline {
+  display: inline;
+  margin-right: 5px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+textarea { 
+  resize: none;
+  min-width: 450px;
+}
+
+.plot {
+  min-height: 150px;
+}
