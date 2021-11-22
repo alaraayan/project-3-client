@@ -117,9 +117,6 @@ export default function AddMovieMood() {
                       className={`mood-button ${(isAdmin() || owner(mood)) ? 'mood-button-selected mood-remove-button' : 'inactive'}`}
                     >
                       {mood}
-                      {/* {isAdmin() && (<span className="material-icons md-18" onClick={doNothing}>
-                          clear
-                      </span>)} */}
                     </button>
                   ))}
                 </div>
