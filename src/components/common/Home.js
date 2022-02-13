@@ -44,42 +44,11 @@ function Home() {
 
 export default Home
 
-// const props = {
-//   mood: 'uplifting',
-//   movies: [
-//     {
-//       title: 'Dances with Wolves',
-//       actors: 'Kevin Costner',
-//       moods: [
-//         { 
-//           id: 123, 
-//           mood: { 
-//             id: 112, 
-//             mood: 'uplifting' }, 
-//           user: { id: 12345 }, 
-//         },
-//         { 
-//           id: 234, 
-//           mood: { 
-//             id: 113, 
-//             mood: 'thought-provoking' }, 
-//           user: { id: 12356 },
-//         }
-//       ],
-//     },
-//     {
-//       title: 'Donnie Darko',
-//       actors: 'Jake Gyllenhaal',
-//     }
-//   ],
-// }
-
 function Gallery({ movies, mood }) {
   console.log(`mood: ${mood}`)
 
   const filteredMovies = movies.filter((movie) => {
-    const movieMoods = movie.moods.map((m) => m.mood.mood) // ['uplifting', 'thought-provoking']
-    // Does ['uplifting', 'thought-provoking'] INCLUDE 'uplifting'
+    const movieMoods = movie.moods.map((m) => m.mood.mood) 
     return movieMoods.includes(mood)
   })
   console.log(filteredMovies)
