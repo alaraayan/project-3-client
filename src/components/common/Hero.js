@@ -15,6 +15,8 @@ function Hero({ movie }) {
       }
     }
     getData()
+    const heroDisplayInterval = setInterval(getData, 7000)
+    return () => clearInterval(heroDisplayInterval)
   }, [movie])
 
   if (!heroMovie) return null
