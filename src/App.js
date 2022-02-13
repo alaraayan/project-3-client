@@ -34,7 +34,7 @@ function App() {
         {/* for any page not found */}
         <Route path="/unauthorized" component={NotAuthorized} />
 
-        <Route exact path="*" component={NotFound} />
+        <Route path="*" component={NotFound} />
 
       </Switch>
       
